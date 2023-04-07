@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'TAEBAEKmilkyway';
+}
+header{
+    font-size: 40px;
+    margin-top: 5vh;
+    text-align: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:70vh;
+    margin-top: 5vh;
+}
+#main-calender{
+    width:90%;
+    height:20%;
+    border: solid 1px black;
+    display: grid;
+    position: relative;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+.calender-container{
+    margin: 5px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.todo-day{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-daynum{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo-num{
+    position: absolute;
+    color: white;
+}
+svg {
+    width: 30px;
+    height: auto;
+}
+.todo-category svg{
+    width: 25px;
+    height: auto;
+}
+.todo svg{
+    width: 20px;
+    height: auto;
+}
+#main-todo-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 70%;
+    margin-top: 24px;
+}
+.todo-container{
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.todo-category{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+.todo{
+    display: flex;
+}
+.todo span{
+    display: block;
+    width: 13px;
+    height: 15px;
+    margin-right: 4px;
+    border-radius: 100px;
+    background: rgb(0, 0, 0);
+    cursor: pointer;
+}
+input[id='clcontrol1'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol1']:checked + label span{
+    background: white;
+}
+input[id='clcontrol2'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol2']:checked+label span {
+    background: white;
+}
+input[id='clcontrol3'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol4'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol4']:checked+label span {
+    background: white;
+}
+input[id='clcontrol5'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol5']:checked+label span {
+    background: white;
+}
+input[id='clcontrol6'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol7'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol7']:checked+label span {
+    background: white;
+}
+input[id='clcontrol8'] {
+    display: none;
+    cursor: pointer;
+}
+input[id='clcontrol8']:checked+label span {
+    background: white;
+}
+#me{
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+#health {
+    background-color: rgb(226, 244, 255);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+#coding {
+    background-color: rgb(204, 219, 192);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+#blog {
+    background-color: rgb(232, 229, 188);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+.todo{
+    margin: 10px 5px;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 10vh;
+    margin-bottom: 5vh;
+}
+#footer-calender{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border: solid 1px black;
+    width: 20%;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+#footer-my {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    width: 20%;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+footer svg{
+    margin-bottom: 6px;
+}
