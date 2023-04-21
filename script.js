@@ -1,8 +1,21 @@
 import data from "./dummy.js"
+
+window.onload=function(){
+    // window.localStorage.clear();
+    if (callNum){
+        for (var i=0;i<data.length;i++){
+            const todoObj= Object.entries(data[i].todo);
+            for(var j=0;j<todoObj.length;j++){
+                // var todoList=JSON.stringify(todoObj[j][1]);
+                window.localStorage.setItem(todoObj[j][0],todoObj[j][1]);
+            }
+        }
+    }
+}
 /**
  * 더미데이터 연동
  */
-function todoPlus(postTarget,postTargetID){
+function todoPlus(postTarget){
     const todo=document.createElement('div')
     todo.setAttribute('class','todo')
     const todoIcon=document.createElement('img')
@@ -11,7 +24,7 @@ function todoPlus(postTarget,postTargetID){
     todoIcon.setAttribute('class','todo-icon')
     todo.innerText=postTarget
     todo.prepend(todoIcon)
-    todo.setAttribute('id',postTargetID)
+    todo.setAttribute('id',postTarget)
     return todo
 }
 for (var i=0;i<data.length;i++){
@@ -29,11 +42,16 @@ for (var i=0;i<data.length;i++){
     ctgrIcon.setAttribute('class','ctgr-icon')
     todoCtgr.append(ctgrIcon)
     todoContainer.append(todoCtgr)
-
-    const todoObj= Object.entries(data[i].todo);
-    for(var j=0;j<todoObj.length;j++){
-        todoContainer.append(todoPlus(todoObj[j][1],todoObj[j][0]))
+    const keys=Object.keys(window.localStorage);
+    keys.sort()
+    if (keys[i]===data[i].id){
+        const value=window.localStorage[keys[i]];
+        const values=value.split(',');
+        for (var v of values){
+            todoContainer.append(todoPlus(v));
+        }
     }
+
 }
 /**
  * 할 일 체크 후 하트의 숫자를 조정하는 부분
@@ -56,7 +74,7 @@ for(var i=0;i<target.length;i++){
 /**
  * 모달을 이용한 카테고리 별 할일 추가 부분
  */
-
+const callNum=0;
 var ctgrTarget=document.querySelectorAll('.ctgr-icon');
 for(var i=0;i<ctgrTarget.length;i++){
     ctgrTarget[i].addEventListener('click',(e)=>{
@@ -65,10 +83,14 @@ for(var i=0;i<ctgrTarget.length;i++){
         modal.style.display='block';
         const modalBtn = document.querySelector('#modal-container #modal button')
         const modalInput=document.querySelector('#modal-container #modal input')
-
+        
         modalBtn.addEventListener('click',(e)=>{
             modal.style.display='none';
             const text=modalInput.value;
+            var todoText=localStorage.getItem(ctgr);
+            todoText=todoText+','+text;
+            localStorage.setItem(ctgr, todoText);
+            callNum+=1;
         })
     })
 }
