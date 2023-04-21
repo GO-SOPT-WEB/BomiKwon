@@ -1,0 +1,201 @@
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'TAEBAEKmilkyway';
+}
+
+header {
+    font-size: 40px;
+    margin-top: 5vh;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+    margin-top: 5vh;
+}
+
+#main-calender {
+    width: 90%;
+    height: 20%;
+    border: solid 1px black;
+    display: grid;
+    position: relative;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+.calender-container {
+    margin: 5px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.todo-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-daynum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-num {
+    position: absolute;
+    color: white;
+}
+
+.todo-number img {
+    width: 1.7rem;
+    height: auto;
+}
+
+.todo-category img {
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}
+
+.todo img {
+    width: 1.25rem;
+    height: auto;
+    filter: invert(100%) sepia(1%) saturate(291%) hue-rotate(70deg) brightness(114%) contrast(81%);
+}
+.todo img:hover {
+    filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(327deg) brightness(96%) contrast(104%);
+    cursor: pointer;
+}
+#main-todo-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+    height: 70%;
+    margin-top: 24px;
+}
+
+.todo-container {
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.todo-category {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.todo {
+    display: flex;
+}
+
+#today{
+    filter: invert(71%) sepia(55%) saturate(646%) hue-rotate(306deg) brightness(99%) contrast(91%);
+}
+#me {
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+#health {
+    background-color: rgb(226, 244, 255);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+#coding {
+    background-color: rgb(204, 219, 192);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+#blog {
+    background-color: rgb(232, 229, 188);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.todo {
+    margin: 10px 5px;
+}
+
+#modal-container{
+    display: none;  
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal{
+    margin: auto;
+    margin-top:25%;
+    width: 15rem;
+    height: 7rem;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#modal input{
+    margin: 1rem;
+}
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 10vh;
+    margin-bottom: 5vh;
+}
+footer section{
+    cursor: pointer;
+}
+#footer-calender {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border: solid 1px black;
+    width: 20%;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+#footer-my {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px black;
+    width: 20%;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+}
+
+footer img {
+    width: 2rem;
+    margin-bottom: 6px;
+}
