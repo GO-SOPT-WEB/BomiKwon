@@ -2,6 +2,18 @@ import data from "./dummy.js"
 /**
  * 더미데이터 연동
  */
+function todoPlus(postTarget,postTargetID){
+    const todo=document.createElement('div')
+    todo.setAttribute('class','todo')
+    const todoIcon=document.createElement('img')
+    todoIcon.setAttribute('src','./images/check-to-slot-solid.svg')
+    todoIcon.setAttribute('alt','할일체크아이콘')
+    todoIcon.setAttribute('class','todo-icon')
+    todo.innerText=postTarget
+    todo.prepend(todoIcon)
+    todo.setAttribute('id',postTargetID)
+    return todo
+}
 for (var i=0;i<data.length;i++){
     const maintodoContainer= document.querySelector("#main-todo-container")
     const todoContainer=document.createElement('div')
@@ -20,17 +32,7 @@ for (var i=0;i<data.length;i++){
 
     const todoObj= Object.entries(data[i].todo);
     for(var j=0;j<todoObj.length;j++){
-        // data[i].todo[j]
-        const todo=document.createElement('div')
-        todo.setAttribute('class','todo')
-        const todoIcon=document.createElement('img')
-        todoIcon.setAttribute('src','./images/check-to-slot-solid.svg')
-        todoIcon.setAttribute('alt','할일체크아이콘')
-        todoIcon.setAttribute('class','todo-icon')
-        todo.innerText=todoObj[j][1]
-        todo.prepend(todoIcon)
-        todo.setAttribute('id',todoObj[j][0])
-        todoContainer.append(todo)
+        todoContainer.append(todoPlus(todoObj[j][1],todoObj[j][0]))
     }
 }
 /**

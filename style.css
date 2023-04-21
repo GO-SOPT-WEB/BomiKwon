@@ -171,7 +171,9 @@ footer {
     height: 10vh;
     margin-bottom: 5vh;
 }
-
+footer section{
+    cursor: pointer;
+}
 #footer-calender {
     display: flex;
     flex-direction: column;
@@ -193,6 +195,7 @@ footer {
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
 }
 
-footer svg {
+footer img {
+    width: 2rem;
     margin-bottom: 6px;
 }
