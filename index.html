@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTodo</title>
+    <link rel="stylesheet" href="style.css">
+    <script async type="module" src="script.js"></script>
+</head>
+<body>
+    <header>WEB TO DO MATE</header>
+    <main>
+        <div id="main-calender">
+            <div class="calender-container">
+                <div class="todo-day">월</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        6
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">17</div>
+            </div>
+            <div class="calender-container">
+                <div class="todo-day">화</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        8
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">18</div>
+            </div>
+            <div class="calender-container">
+                <div class="todo-day">수</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        5
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">19</div>
+            </div>            
+            <div class="calender-container">
+                <div class="todo-day">목</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        9
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">20</div>
+            </div>
+            <div class="calender-container" id="today">
+                <div class="todo-day">금</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">21</div>
+            </div>            
+            <div class="calender-container">
+                <div class="todo-day">토</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        5
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">22</div>
+            </div>                        
+            <div class="calender-container">
+                <div class="todo-day">일</div>
+                <div class="todo-number">
+                    <div class="todo-num">
+                        4
+                    </div>
+                    <img src="./images/heart-solid.svg" alt="날짜아이콘">
+                </div>
+                <div class="todo-daynum">23</div>
+            </div>                        
+        </div>
+    
+        <div id="main-todo-container">
+        </div>
+    </main>
+    <div id="modal-container">
+        <form id="modal">
+            <input type="text">
+            <button>추가</button>
+        </form>
+    </div>
+    <footer>
+        <section id="footer-calender" onClick="location.href='/'">
+            <img src="./images/house-solid.svg" alt="달력아이콘">
+            달력
+        </section>
+        <section id="footer-my" onClick="location.href='/mycategory.html'">
+            <img src="./images/user-solid.svg" alt="my아이콘">
+            my
+        </section>
+    </footer>
+</body>
+</html>
