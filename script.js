@@ -14,6 +14,7 @@ for (var i=0;i<data.length;i++){
     const ctgrIcon=document.createElement('img')
     ctgrIcon.setAttribute('src','./images/circle-plus-solid.svg')
     ctgrIcon.setAttribute('alt','카테고리아이콘')
+    ctgrIcon.setAttribute('class','ctgr-icon')
     todoCtgr.append(ctgrIcon)
     todoContainer.append(todoCtgr)
 
@@ -48,5 +49,24 @@ for(var i=0;i<target.length;i++){
             todoRemainContainer.innerText=todoRemain;
             checkedList.push(e.target.parentNode.id);
         }
+    })
+}
+/**
+ * 모달을 이용한 카테고리 별 할일 추가 부분
+ */
+
+var ctgrTarget=document.querySelectorAll('.ctgr-icon');
+for(var i=0;i<ctgrTarget.length;i++){
+    ctgrTarget[i].addEventListener('click',(e)=>{
+        const ctgr=e.target.parentNode.id;
+        const modal = document.querySelector('#modal-container')
+        modal.style.display='block';
+        const modalBtn = document.querySelector('#modal-container #modal button')
+        const modalInput=document.querySelector('#modal-container #modal input')
+
+        modalBtn.addEventListener('click',(e)=>{
+            modal.style.display='none';
+            const text=modalInput.value;
+        })
     })
 }
