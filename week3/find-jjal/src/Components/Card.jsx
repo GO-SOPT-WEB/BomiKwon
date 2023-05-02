@@ -1,17 +1,19 @@
 import styled from "styled-components";
-const Card = () => {
+
+const Card = ({imgUrl}) => {
   return (
     <CardContainer>
       <BackCard></BackCard>
-      <CardImg src="" alt="카드에 삽입될 이미지" />
-      <FrontCard></FrontCard>
+      <CardImg src={imgUrl} alt="카드에 삽입될 이미지" />
+      {/* <FrontCard></FrontCard> */}
     </CardContainer>
   );
 };
 export default Card;
 const CardContainer = styled.div`
-  width: 20%;
-  height: 20rem;
+  margin:1rem;
+  width:88%;
+  height: 25rem;
   position:relative;
 `;
 const FrontCard = styled.div`
