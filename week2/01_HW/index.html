@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bomipocha</title>
+    <link rel="stylesheet" href="style.css">
+    <script async type="module" src="script.js"></script>
+    <script src="https://kit.fontawesome.com/337bf03ec9.js" crossorigin="anonymous"></script>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></link>
+
+</head>
+<body>
+    <header>
+        <h4>
+            보미포차
+        </h4>
+        <h4>
+            <input type="checkbox" id="icon">
+            <label for="icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <div class="menu-container">
+                <ul>
+                    <li>메뉴</li>
+                    <li>새 상품 추가</li>
+                    <li>찜 목록</li>
+                </ul>
+            </div>
+        </h4>
+    </header>
+    <div id="nav-cards-wrap">
+        <nav>
+            <h1 class="nav-items">종류</h1>
+            <!-- <input type="checkbox" id="category">
+            <label for="category">
+                <div class="nav-container">
+                    <div class="nav-items">전체</div>
+                </div>
+            </label> -->
+            <a href="#ctgr-all" class="nav-container">
+                <div class="nav-items">전체</div>
+            </a>
+            <a href="#ctgr-dish" class="nav-container">
+                <div class="nav-items">안주</div>
+            </a>
+            <a href="#ctgr-tang" class="nav-container">
+                <div class="nav-items">탕</div>
+            </a>
+            <a href="#ctgr-side" class="nav-container">
+                <div class="nav-items">사이드</div>
+            </a>
+            <a href="#ctgr-alcohol" class="nav-container">
+                <div class="nav-items">술</div>
+            </a>
+        </nav>
+        <div id="ctg-cards-wrap">
+            <div class="selected-ctgr">
+                <div id="ctgr-all" style="display:none;">
+                    <div class="category-container">
+                        <h2> 전체</h2>
+                        <h3 class="cancel-btn">X</h3>
+                    </div>
+                </div>
+                <div id="ctgr-dish" style="display:none;">
+                    <div class="category-container">
+                        <h2> 안주</h2>
+                        <h3 class="cancel-btn">X</h3>
+                    </div>
+                </div>
+                <div id="ctgr-tang" style="display:none;">
+                    <div class="category-container">
+                        <h2> 탕</h2>
+                        <h3 class="cancel-btn">X</h3>
+                    </div>
+                </div>
+                <div id="ctgr-side" style="display:none;">
+                    <div class="category-container">
+                        <h2> 사이드</h2>
+                        <h3 class="cancel-btn">X</h3>
+                    </div>
+                </div>
+                <div id="ctgr-alcohol" style="display:none;">
+                    <div class="category-container">
+                        <h2> 술</h2>
+                        <h3 class="cancel-btn">X</h3>
+                    </div>
+                </div>
+            </div>  
+            <div id="card-wrap">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

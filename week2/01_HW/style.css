@@ -1,0 +1,264 @@
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    box-sizing:border-box;
+    margin:0;
+    font-family: "establishRetrosansOTF";
+}
+
+/* -----------------헤더에 대한 css ---------------------- */
+header{
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100px;
+    background-color: #c5663d;
+    border-radius: 0px 0px 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 60px;
+}
+h4{
+    margin: .625rem;
+    margin-left: 3.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#e0dabe
+}
+
+input[id='icon'] {display: none;}
+input[id='icon']+label {
+    display: block;
+    margin: 30px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+    top:5px;
+}
+input[id='icon']+label span{
+    display: block;
+    width: 100%;
+    height:5px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    background: #e0dabe;
+    cursor: pointer;
+}
+input[id='icon']:checked + label{z-index: 2;}
+input[id='icon']:checked+label span{
+    background: #c5663d;
+}
+div[class='menu-container']{
+    position: fixed;
+    width: 400px;
+    height: 100vh;
+    background: #12714f;
+    top: 0px;
+    right: -400px;
+    z-index: 1;
+    transition: all 0.35s;
+    font-size: 40px;
+}
+div[class='menu-container'] ul{
+    margin: 80px 30px 30px 30px;
+}
+input[id='icon']:checked + label + div{
+    right:0;
+} 
+
+/* -----------------nav와 카드content를 포함하는 main--------------------- */
+#nav-cards-wrap{
+    top:100px;
+    height:1000px;
+    width: 100vw;
+    padding-top: 130px;
+    margin:0 auto;
+    background-color: #9eb9af;
+    display: flex;
+    flex-direction: row;
+}
+
+/* ---------------nav-------------------- */
+nav{
+    position: fixed;
+    width:15rem;
+    height:300px;
+    background-color:#12714f;
+    box-shadow: 0 4px 5px #c5663d;
+    margin: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+nav h1{
+    color:#e0dabe;
+}
+.nav-container {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    width: 10.625rem;
+    background-color: #e0dabe;
+    color: #c5663d;
+    border-radius: 3px;
+    transition: all .1s ease-in;
+}
+.nav-container:hover {
+    background-color: #809068;
+    color: #c5663d;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+input#category{
+    display: none;
+}
+input#category:checked + label a{
+    background-color: #c5663d;
+    color: #809068;
+}
+/* ----------------선택 카테고리-------------------- */
+#ctg-cards-wrap{
+    width: 1800px;
+    height: 500px;
+    padding-left: 15rem;
+    margin: 0rem 2rem 0rem 3rem;
+    position: static;
+}
+a{
+    text-decoration-line: none;
+}
+.selected-ctgr{
+    margin-bottom: 2rem;
+    display: flex;
+}
+.category-container{
+    width:9.375rem;
+    height:2.1875rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left:2rem;
+    background-color:#12714f;
+    color: #c5663d;
+}
+.category-container .cancel-btn{
+    text-align: center;
+    background-color: #c5663d;
+    color: #9eb9af;
+    cursor: pointer;
+}
+/* ----------------카드content-------------------- */
+#card-wrap{
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,auto));
+    /* grid-template-rows: auto; */
+    gap:1.75rem;
+}
+.card{
+    background-color: #95d1c2;
+    /* height:300px;
+    width: 13.125rem; */
+    width: 100%;
+    /* box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 4px 5px #809068;
+    border-radius: 3px;
+    transition: all .1s ease-in;
+    display: none;
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 15px;
+    color:#13210d;
+    position:relative;
+}
+.card:hover{
+    top:-5px;
+    cursor: pointer;
+}
+.card-title{
+    font-size: 20px;
+    padding: 3px;
+    text-align: center;
+}
+.card-tag {
+    height: 1.0625rem;
+    font-size: 13px;
+    padding-bottom: 5px;
+    color: #c5663d;
+    overflow:hidden;
+    /* word-break: keep-all; */
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+}
+.card .icon {
+    height: 1.3rem;
+    opacity: 0.85;
+    filter: invert(32%) sepia(41%) saturate(1448%) hue-rotate(118deg) brightness(88%) contrast(86%);
+}
+.card .icon:hover {
+    filter: invert(51%) sepia(8%) saturate(4316%) hue-rotate(333deg) brightness(89%) contrast(81%);
+}
+.card-tag .modal-open-icon {
+    opacity: 0.85;
+    filter: invert(32%) sepia(41%) saturate(1448%) hue-rotate(118deg) brightness(88%) contrast(86%);
+    height: 1rem;
+}
+.card-tag .modal-open-icon:hover {
+    filter: invert(51%) sepia(8%) saturate(4316%) hue-rotate(333deg) brightness(89%) contrast(81%);
+}
+.tag-modal .modal-close-icon{
+    opacity: 0.85;
+    filter: invert(32%) sepia(41%) saturate(1448%) hue-rotate(118deg) brightness(88%) contrast(86%);
+    height: 1rem;
+}
+.tag-modal .modal-close-icon:hover {
+    filter: invert(51%) sepia(8%) saturate(4316%) hue-rotate(333deg) brightness(89%) contrast(81%);
+}
+.card .tag-modal{
+    position: fixed;
+    width:12rem;
+    background: #e0dabe;
+    color: #c5663d;
+    font-size:1rem;
+    z-index: 1;
+    transition: all 0.35s;
+    padding: 0.75rem;
+    margin-top: -5rem;
+    display: flex;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 5px #12714f;
+}
+.card .menuImg{
+    height:10rem;
+    padding:.375rem;
+    margin-bottom: 0.5rem;
+}
+button{
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+.card-heart {
+    font-size: 10px;
+}
+.card-heart :hover{
+    font-size: 10px;
+    color: rgb(0, 204, 37);
+    cursor: pointer;
+}
