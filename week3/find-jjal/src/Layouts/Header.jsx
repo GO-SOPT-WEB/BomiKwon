@@ -25,7 +25,7 @@ export default Header;
 
 const StyledHeader = styled.header`
   width: 100%;
-  height: 15rem;
+  height: 12rem;
   display: flex;
   justify-content: center;
   align-items: center;

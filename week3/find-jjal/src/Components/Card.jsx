@@ -12,8 +12,8 @@ const Card = ({imgUrl}) => {
 export default Card;
 const CardContainer = styled.div`
   margin:1rem;
-  width:88%;
-  height: 25rem;
+  width:75%;
+  height: 16rem;
   position:relative;
 `;
 const FrontCard = styled.div`

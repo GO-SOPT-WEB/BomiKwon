@@ -1,6 +1,8 @@
 import LevelBtn from "../Components/levelBtn";
 import Card from "../Components/Card";
 import styled from "styled-components";
+import { useState } from "react";
+
 function Main() {
   const IMG = [
     "src/assets/01.jpeg",
@@ -14,9 +16,18 @@ function Main() {
     "src/assets/09.jpeg",
   ];
 
+  // 난이도에 따라 useState로 카드 개수 조절
+  const [cardsNum, setCardNums] = useState(5);
+  
   /**
-   * 랜덤하게 개수에 따라 이미지를 가져오는 부분
+   * 카드 선택, 배치 랜덤으로 하는 부분
    */
+  // 쌍이 묶인 배열들을 무작위로 섞어 랜덤으로 배치되게끔
+  const shuffle = (array) => {
+    array.sort(() => Math.random() - 0.5);
+    return array;
+  };
+  // 정해진 개수num만큼 카드를 랜덤하게 선택
   const randomImgChoice = (num) => {
     const indexOfIMG = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     var cnt = 0;
@@ -28,10 +39,10 @@ function Main() {
         Math.floor(Math.random() * indexOfIMG.length),
         1
       )[0];
-      newImgs.push(IMG[randomIndex]);
-      cnt += 1;
+      newImgs.push(IMG[randomIndex], IMG[randomIndex]); //쌍으로 넣어줌
+      cnt += 1; 
     }
-    return newImgs;
+    return shuffle(newImgs);
   };
 
   return (
@@ -42,10 +53,9 @@ function Main() {
         <LevelBtn title="HARD"></LevelBtn>
       </LevelContainer>
       <CardsContainer>
-        {randomImgChoice(9).map((imgUrls) => 
+        {randomImgChoice(9).map((imgUrls) => (
           <Card imgUrl={imgUrls} key={imgUrls}></Card>
-        )
-        }
+        ))}
       </CardsContainer>
     </StyledMain>
   );
@@ -61,12 +71,10 @@ const StyledMain = styled.main`
 `;
 const LevelContainer = styled.div``;
 const CardsContainer = styled.div`
-  width: 80%;
-  margin-top: 1.5rem;
+  width: 55%;
+  /* margin-top: 1rem; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding:1rem 3rem;
   padding-right:1rem;
-  row-gap:1rem;
-  col-gap:1rem;
 `;
