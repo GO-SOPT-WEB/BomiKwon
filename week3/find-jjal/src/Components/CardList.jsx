@@ -1,9 +1,13 @@
 import Card from "./Card";
 import { useState, useEffect } from "react";
-const CardList = ({ level }) => {
-  // 난이도에 따라 useState로 카드 개수 조절
-  const [cardUrlList, setcardUrlList] = useState([]);
-  //   const targetLevel=useRef(null);
+
+/**
+ * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
+ * - props : level (Main에서 props로 level을 전달받아, 해당 난이도에 따른 카드 개수에 맞게 출력한다)
+ * - state : cardUrlList (level이 바뀔 때마다 해당 레벨의 카드 개수에 맞게 img url 배열을 관리)
+ */
+const CardList = ({ level }) => { 
+  const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -35,33 +39,36 @@ const CardList = ({ level }) => {
         Math.floor(Math.random() * indexOfIMG.length),
         1
       )[0];
-      newImgs.push(IMG[randomIndex]); //쌍으로 넣어줌
+      newImgs.push(IMG[randomIndex]); 
       cnt += 1;
     }
-   
-    return shuffle(newImgs);
+    return (newImgs);
   };
 
+  // 처음에 로드될 때는 빈 배열로 설정
   useEffect(() => {
     setcardUrlList([]);
   }, []);
 
+  /**
+   * 레벨이 업데이트 될 때마다 난이도에 따른 
+   * 카드에 들어갈 이미지 url을 랜덤으로 지정
+   */
   useEffect(() => {
     if (level === "EASY") {
       const randomURLList = randomImgChoice(5);
-      randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(randomURLList);
+      randomURLList.map((url) => randomURLList.push(url)); // 쌍으로 들어가야함
+      setcardUrlList(shuffle(randomURLList)); //셔플을 통해 섞은 배열
     } else if (level === "NORMAL") {
       const randomURLList = randomImgChoice(7);
       randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(randomURLList);
+      setcardUrlList(shuffle(randomURLList));
     } else if (level === "HARD") {
       const randomURLList = randomImgChoice(9);
       randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(randomURLList);
+      setcardUrlList(shuffle(randomURLList));
     }
   }, [level]);
-
 
   return cardUrlList.map((imgUrls, idx) => (
     <Card imgUrl={imgUrls} key={idx}></Card>
