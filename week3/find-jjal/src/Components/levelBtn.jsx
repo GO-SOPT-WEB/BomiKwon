@@ -1,14 +1,21 @@
 import styled, {css } from "styled-components";
 import { useState } from "react";
 
-const LevelBtn = ({ title }) => {
+const LevelBtn = (props) => {
   const [isClick, setIsClick] = useState(false);
+  const { handleOnClick, targetLvBtn,title } = props;
+  // 난이도에 따라 useState로 카드 개수 조절
+  // const [cardsNum, setCardNums] = useState(5);
 
+  const LvHandler=()=>{
+    props.getLevel(props.title);
+  }
   return (
     <StyledBtn
       type="button"
+      ref={targetLvBtn}
       isClick={isClick}
-      onClick={() => setIsClick((prev) => !prev)}
+      onClick={(() => {setIsClick((prev) => !prev), LvHandler(), handleOnClick})}
     >
       {title}
     </StyledBtn>

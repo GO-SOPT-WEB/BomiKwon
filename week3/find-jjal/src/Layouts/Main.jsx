@@ -1,9 +1,13 @@
 import LevelBtn from "../Components/levelBtn";
-import Card from "../Components/Card";
 import styled from "styled-components";
 import { useState } from "react";
+import Card from "../Components/Card";
 
 function Main() {
+  // 난이도에 따라 useState로 카드 개수 조절
+  const [cardUrlList, setcardUrlList] = useState([]);
+//   const targetLevel=useRef(null);
+
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -15,10 +19,6 @@ function Main() {
     "src/assets/08.jpeg",
     "src/assets/09.jpeg",
   ];
-
-  // 난이도에 따라 useState로 카드 개수 조절
-  const [cardsNum, setCardNums] = useState(5);
-  
   /**
    * 카드 선택, 배치 랜덤으로 하는 부분
    */
@@ -39,21 +39,66 @@ function Main() {
         Math.floor(Math.random() * indexOfIMG.length),
         1
       )[0];
-      newImgs.push(IMG[randomIndex], IMG[randomIndex]); //쌍으로 넣어줌
-      cnt += 1; 
+      newImgs.push(IMG[randomIndex]);
+      newImgs.push(IMG[randomIndex]); //쌍으로 넣어줌
+      cnt += 1;
     }
     return shuffle(newImgs);
   };
 
+  const handleOnClick=(e)=>{
+    console.log(e);
+
+  }
+  const targetLvBtn=(e)=>{
+    console.log(e);
+  }
+  const levelHandler = (lv) => {
+    if (lv === "EASY") {
+      const randomURLS = randomImgChoice(5);
+      setcardUrlList([...randomURLS]);
+    } else if (lv === "NORMAL") {
+      const randomURLS = randomImgChoice(7);
+      setcardUrlList([...randomURLS]);
+    } else if (lv === "HARD") {
+      const randomURLS = randomImgChoice(9);
+      setcardUrlList([...randomURLS]);
+    }
+  };
+
+  //   let randomURLs = randomImgChoice(Object.values({ numOfCards }));
+  //   useEffect(() => {
+  //     console.log("업데이트");
+  //     var cardNum = Object.values({ numOfCards });
+  //     randomURLs = randomImgChoice(cardNum);
+  //   }, [numOfCards]);
+
+  console.log(cardUrlList);
+
   return (
     <StyledMain>
       <LevelContainer>
-        <LevelBtn title="EASY"></LevelBtn>
-        <LevelBtn title="NORMAL"></LevelBtn>
-        <LevelBtn title="HARD"></LevelBtn>
+        <LevelBtn
+          title="EASY"
+          targetLvBtn={targetLvBtn}
+          handleOnClick={handleOnClick}
+          getLevel={levelHandler}
+        ></LevelBtn>
+        <LevelBtn
+          title="NORMAL"
+          targetLvBtn={targetLvBtn}
+          handleOnClick={handleOnClick}
+          getLevel={levelHandler}
+        ></LevelBtn>
+        <LevelBtn
+          title="HARD"
+          targetLvBtn={targetLvBtn}
+          handleOnClick={handleOnClick}
+          getLevel={levelHandler}
+        ></LevelBtn>
       </LevelContainer>
       <CardsContainer>
-        {randomImgChoice(9).map((imgUrls) => (
+        {cardUrlList.map((imgUrls) => (
           <Card imgUrl={imgUrls} key={imgUrls}></Card>
         ))}
       </CardsContainer>
@@ -75,6 +120,6 @@ const CardsContainer = styled.div`
   /* margin-top: 1rem; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding:1rem 3rem;
-  padding-right:1rem;
+  padding: 1rem 3rem;
+  padding-right: 1rem;
 `;
