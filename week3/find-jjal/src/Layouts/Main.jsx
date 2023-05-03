@@ -1,50 +1,17 @@
-import LevelBtn from "../Components/levelBtn";
 import styled from "styled-components";
 import { useState } from "react";
-import Card from "../Components/Card";
+import LvBtnList from "../Components/levelBtnList";
 import CardList from "../Components/CardList";
 
 function Main() {
   const [level, setLevel] = useState();
-
-  const handleOnClick = (e) => {
-    // console.log(e);
+  const getLevel = (lv) => {
+    setLevel(lv);
   };
-  const targetLvBtn = (e) => {
-    // console.log(e);
-  };
-
-  const levelHandler = (lv) => {
-      setLevel(lv)
-  };
-
-//   useEffect(() => {
-//     setcardUrlList([...randomURLS]);
-//   }, [randomURLS]);
-//   console.log(cardUrlList);
-console.log(level);
-
   return (
     <StyledMain>
       <LevelContainer>
-        <LevelBtn
-          title="EASY"
-          getLevel={levelHandler}
-          targetLvBtn={targetLvBtn}
-          handleBtnSubmit={handleOnClick}
-        ></LevelBtn>
-        <LevelBtn
-          title="NORMAL"
-          getLevel={levelHandler}
-          targetLvBtn={targetLvBtn}
-          handleBtnSubmit={handleOnClick}
-        ></LevelBtn>
-        <LevelBtn
-          title="HARD"
-          getLevel={levelHandler}
-          targetLvBtn={targetLvBtn}
-          handleBtnSubmit={handleOnClick}
-        ></LevelBtn>
+        <LvBtnList getLevel={getLevel}></LvBtnList>
       </LevelContainer>
       <CardsContainer>
         <CardList level={level}></CardList>
@@ -63,10 +30,11 @@ const StyledMain = styled.main`
 `;
 const LevelContainer = styled.div``;
 const CardsContainer = styled.div`
-  width: 55%;
+  width: 80%;
   /* margin-top: 1rem; */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, auto));
   padding: 1rem 3rem;
   padding-right: 1rem;
 `;

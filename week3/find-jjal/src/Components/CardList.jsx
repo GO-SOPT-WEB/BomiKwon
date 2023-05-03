@@ -56,15 +56,15 @@ const CardList = ({ level }) => {
       randomURLList.map((url) => randomURLList.push(url));
       setcardUrlList(randomURLList);
     } else if (level === "HARD") {
-      const randomURLList = randomImgChoice(10);
+      const randomURLList = randomImgChoice(9);
       randomURLList.map((url) => randomURLList.push(url));
       setcardUrlList(randomURLList);
     }
   }, [level]);
 
 
-  return cardUrlList.map((imgUrls) => (
-    <Card imgUrl={imgUrls} key={cardUrlList.indexOf(imgUrls)}></Card>
+  return cardUrlList.map((imgUrls, idx) => (
+    <Card imgUrl={imgUrls} key={idx}></Card>
   ));
 };
 

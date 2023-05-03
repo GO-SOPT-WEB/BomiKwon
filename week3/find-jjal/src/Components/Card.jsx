@@ -12,7 +12,7 @@ const Card = ({imgUrl}) => {
 export default Card;
 const CardContainer = styled.div`
   margin:1rem;
-  width:75%;
+  width:85%;
   height: 16rem;
   position:relative;
 `;
