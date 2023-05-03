@@ -1,6 +1,9 @@
 import Card from "./Card";
-import { useEffect } from "react";
-const CardList = ({numOfCards}) => {
+import { useState, useEffect } from "react";
+const CardList = ({ level }) => {
+  // 난이도에 따라 useState로 카드 개수 조절
+  const [cardUrlList, setcardUrlList] = useState([]);
+  //   const targetLevel=useRef(null);
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -32,26 +35,36 @@ const CardList = ({numOfCards}) => {
         Math.floor(Math.random() * indexOfIMG.length),
         1
       )[0];
-      newImgs.push(IMG[randomIndex]); 
       newImgs.push(IMG[randomIndex]); //쌍으로 넣어줌
       cnt += 1;
     }
+   
     return shuffle(newImgs);
   };
 
-
-  let randomURLs = randomImgChoice(Object.values({ numOfCards }));
   useEffect(() => {
-    console.log("업데이트");
-    var cardNum = Object.values({ numOfCards });
-    randomURLs = randomImgChoice(cardNum);
-  }, [numOfCards]);
-  
+    setcardUrlList([]);
+  }, []);
 
-  console.log(randomURLs)
+  useEffect(() => {
+    if (level === "EASY") {
+      const randomURLList = randomImgChoice(5);
+      randomURLList.map((url) => randomURLList.push(url));
+      setcardUrlList(randomURLList);
+    } else if (level === "NORMAL") {
+      const randomURLList = randomImgChoice(7);
+      randomURLList.map((url) => randomURLList.push(url));
+      setcardUrlList(randomURLList);
+    } else if (level === "HARD") {
+      const randomURLList = randomImgChoice(10);
+      randomURLList.map((url) => randomURLList.push(url));
+      setcardUrlList(randomURLList);
+    }
+  }, [level]);
 
-  return randomURLs.map((imgUrls) => (
-    <Card imgUrl={imgUrls} key={imgUrls}></Card>
+
+  return cardUrlList.map((imgUrls) => (
+    <Card imgUrl={imgUrls} key={cardUrlList.indexOf(imgUrls)}></Card>
   ));
 };
 
