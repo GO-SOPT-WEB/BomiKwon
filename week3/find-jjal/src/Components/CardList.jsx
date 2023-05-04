@@ -6,8 +6,9 @@ import { useState, useEffect } from "react";
  * - props : level (Main에서 props로 level을 전달받아, 해당 난이도에 따른 카드 개수에 맞게 출력한다)
  * - state : cardUrlList (level이 바뀔 때마다 해당 레벨의 카드 개수에 맞게 img url 배열을 관리)
  */
-const CardList = ({ level }) => { 
+const CardList = ({ level }) => {
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
+  const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -39,19 +40,20 @@ const CardList = ({ level }) => {
         Math.floor(Math.random() * indexOfIMG.length),
         1
       )[0];
-      newImgs.push(IMG[randomIndex]); 
+      newImgs.push(IMG[randomIndex]);
       cnt += 1;
     }
-    return (newImgs);
+    return newImgs;
   };
 
   // 처음에 로드될 때는 빈 배열로 설정
   useEffect(() => {
     setcardUrlList([]);
+    setFlippedCardList([]);
   }, []);
 
   /**
-   * 레벨이 업데이트 될 때마다 난이도에 따른 
+   * 레벨이 업데이트 될 때마다 난이도에 따른
    * 카드에 들어갈 이미지 url을 랜덤으로 지정
    */
   useEffect(() => {
@@ -70,8 +72,30 @@ const CardList = ({ level }) => {
     }
   }, [level]);
 
+  /**
+   * 카드를 쌍으로 받아와 같은지 유무를 파악하는 부분
+   */
+  const handleClickedCards = (card) => {
+    // Card 컴포넌트로부터 클릭된 url을 받아온다
+    setFlippedCardList([...flippedCardList, card]);
+  };
+  useEffect(() => {
+    if (flippedCardList.length == 2) {
+      //쌍이 이루어질 때마다 확인
+      flippedCardList[0] === flippedCardList[1]
+        ? console.log("same") //같을 때
+        : console.log("diff"); //다를 때'
+      setFlippedCardList([]); //2개 확인 후 배열 초기화
+    }
+  }, [flippedCardList]);
+
   return cardUrlList.map((imgUrls, idx) => (
-    <Card imgUrl={imgUrls} key={idx}></Card>
+    <Card
+      imgUrl={imgUrls}
+      key={idx}
+      clickedCards={handleClickedCards}
+      flippedCards={flippedCardList}
+    ></Card>
   ));
 };
 
