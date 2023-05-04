@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 /**
  * Card 컴포넌트 : 카드 하나하나의 이미지, 뒷면/ 후면을 관리
@@ -28,7 +28,7 @@ const Card = (props) => {
         onClick={(e) => {
           const imgClass =
             e.target.parentNode.childNodes[1].className.split(" ")[2]; //선택된 카드의 className을 전달 (같은 이미지를 구분하기 위함)
-          clickedCards(imgUrl, imgClass);
+            clickedCards(imgUrl, imgClass);
         }}
       >
         <BackCard></BackCard>

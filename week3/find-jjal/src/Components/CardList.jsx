@@ -21,15 +21,15 @@ const CardList = ({ level,getAnswer }) => {
   }, [correctCardList]);
 
   const IMG = [
-    "src/assets/01.jpeg",
-    "src/assets/02.jpeg",
-    "src/assets/03.jpeg",
-    "src/assets/04.jpeg",
-    "src/assets/05.jpeg",
-    "src/assets/06.jpeg",
-    "src/assets/07.jpeg",
-    "src/assets/08.jpeg",
-    "src/assets/09.jpeg",
+    "src/assets/Images/01.jpeg",
+    "src/assets/Images/02.jpeg",
+    "src/assets/Images/03.jpeg",
+    "src/assets/Images/04.jpeg",
+    "src/assets/Images/05.jpeg",
+    "src/assets/Images/06.jpeg",
+    "src/assets/Images/07.jpeg",
+    "src/assets/Images/08.jpeg",
+    "src/assets/Images/09.jpeg",
   ];
   /**
    * 카드 선택, 배치 랜덤으로 하는 부분
@@ -115,7 +115,7 @@ const CardList = ({ level,getAnswer }) => {
     <Card
       imgUrl={imgUrls}
       key={idx}
-      number={idx}
+      number={idx+1}
       clickedCards={handleClickedCards}
       flippedCards={flippedCardIDList}
       correctCardList={correctCardList}
