@@ -3,20 +3,25 @@ import { useState, useEffect } from "react";
 
 /**
  * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
- * - props 
+ * - props
  * 1) level (Main에서 props로 level을 전달받아, 해당 난이도에 따른 카드 개수에 맞게 출력한다)
  * 2) getAnswer : Main 컴포넌트(상위)로 현재 맞춘 쌍의 카드 개수를 전달
- * - state 
+ * - state
  * 1) cardUrlList : level이 바뀔 때마다 해당 레벨의 카드 개수에 맞게 img url 배열을 관리
  * 2) flippedCardList : handleClickedCards을 통해 Card 컴포넌트(하위)에서 받아온 뒤집힌 카드의 imgURL을 관리
- * 3) flippedCardIDList : handleClickedCards을 통해 Card 컴포넌트(하위)에서 받아온 뒤집힌 카드의 id를 관리 
+ * 3) flippedCardIDList : handleClickedCards을 통해 Card 컴포넌트(하위)에서 받아온 뒤집힌 카드의 id를 관리
  * 4) correctCardList : flippedCardList로 받아온 뒤집힌 카드가 짝일 시에, 짝을 맞춘 imgURL을 저장
  */
-const CardList = ({ level, getAnswer }) => {
+const CardList = (props) => {
+  const { level, getAnswer, isResetClicked } = props;
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
   const [flippedCardIDList, setFlippedCardIDList] = useState([]); //뒤집어진 카드의 id를 저장
   const [correctCardList, setCorrectCardList] = useState([]); //짝이 맞는 쌍을 담은 배열
+  
+  useEffect(() => {
+    setCorrectCardList([]);
+  }, [isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달
 
   useEffect(() => {
     getAnswer(correctCardList.length);
@@ -112,12 +117,11 @@ const CardList = ({ level, getAnswer }) => {
     }
   }, [flippedCardList, flippedCardIDList]);
 
-
   return cardUrlList.map((imgUrls, idx) => (
     <Card
       imgUrl={imgUrls}
       key={idx}
-      number={idx+1}
+      number={idx + 1}
       clickedCards={handleClickedCards}
       flippedCards={flippedCardIDList}
       correctCardList={correctCardList}
