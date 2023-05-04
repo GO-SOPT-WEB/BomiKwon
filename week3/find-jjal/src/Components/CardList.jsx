@@ -9,6 +9,9 @@ import { useState, useEffect } from "react";
 const CardList = ({ level }) => {
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
+  const [flippedCardIDList,setFlippedCardIDList]=useState([]); //뒤집어진 카드의 id를 저장
+  const [correctCardList,setCorrectCardList]=useState([]);
+  const [wrongCardList, setWrongCardList] = useState([]);
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -75,26 +78,30 @@ const CardList = ({ level }) => {
   /**
    * 카드를 쌍으로 받아와 같은지 유무를 파악하는 부분
    */
-  const handleClickedCards = (card) => {
+  const handleClickedCards = (card,cardID) => {
     // Card 컴포넌트로부터 클릭된 url을 받아온다
     setFlippedCardList([...flippedCardList, card]);
+    setFlippedCardIDList([...flippedCardIDList,cardID]);
   };
   useEffect(() => {
     if (flippedCardList.length == 2) {
       //쌍이 이루어질 때마다 확인
       flippedCardList[0] === flippedCardList[1]
-        ? console.log("same") //같을 때
-        : console.log("diff"); //다를 때'
+        ? setCorrectCardList([...flippedCardList]) //같을 때 현재 뒤집한 쌍을 전달
+        : setWrongCardList([...flippedCardIDList]); //다를 때는 카드 각각의 id를 전달
       setFlippedCardList([]); //2개 확인 후 배열 초기화
+      setFlippedCardIDList([]); //2개 확인 후 배열 초기화
     }
-  }, [flippedCardList]);
+  }, [flippedCardList, flippedCardIDList]);
 
   return cardUrlList.map((imgUrls, idx) => (
     <Card
       imgUrl={imgUrls}
       key={idx}
+      number={idx}
       clickedCards={handleClickedCards}
-      flippedCards={flippedCardList}
+      flippedCards={correctCardList}
+      unFlippedCards={wrongCardList} //다시 뒤집어야 하는 틀린 배열을 전달
     ></Card>
   ));
 };
