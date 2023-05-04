@@ -49,11 +49,11 @@ const StyledBtn = styled.button`
   ${(props) =>
     props.isClick
       ? css`
-          background-color: #000000;
-          color: white;
+          background-color: ${({ theme }) => theme.colors.black};
+          color: ${({ theme }) => theme.colors.white};
         `
       : css`
-          background-color: #ffffff;
-          color: #000000;
+          background-color: ${({ theme }) => theme.colors.white};
+          color: ${({ theme }) => theme.colors.black};
         `};
 `;

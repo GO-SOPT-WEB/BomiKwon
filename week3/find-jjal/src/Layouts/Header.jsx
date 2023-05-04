@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
-function Header({ answer }) {
+function Header(props) {
+  const { answer, isResetBtnClicked } = props;
   const [fade, setFade] = useState("");
   const [isClick, setIsClick] = useState(false);
 
   useEffect(() => {
     let a = setTimeout(() => {
-      setFade("end")
-    },500);
+      setFade("end");
+    }, 500);
     return () => {
       clearTimeout(a);
       setFade("");
-    }
+    };
   }, [answer]);
+
+  const handleResetClicked = () => {
+    isResetBtnClicked(true);
+  };
 
   return (
     <StyledHeader>
@@ -24,7 +29,8 @@ function Header({ answer }) {
       <BtnContainer
         type="button"
         isClick={isClick}
-        onClick={() => setIsClick((prev) => !prev)}
+        // onClick={setIsClick(true)}
+        onClick={handleResetClicked}
       >
         RESET
       </BtnContainer>
@@ -44,28 +50,24 @@ const TitleContainer = styled.div`
   width: 70%;
   text-align: center;
   & .start {
-    color: #fbff00;
+    color: ${({ theme }) => theme.colors.yellow};
     text-shadow: 0 0 0.1em, 0 0 0.2em;
     transition: 0.5s;
   }
   & .end {
-    text-shadow: 0 0 0.0em, 0 0 0.0em;
-    color: black;
+    text-shadow: 0 0 0em, 0 0 0em;
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 const BtnContainer = styled.button`
   width: 10rem;
   padding: 1rem;
-
   border-radius: 1rem;
-  ${(props) =>
-    props.isClick
-      ? css`
-          background-color: #000000;
-          color: white;
-        `
-      : css`
-          background-color: #ffffff;
-          color: #000000;
-        `};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;

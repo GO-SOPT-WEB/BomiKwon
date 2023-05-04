@@ -83,7 +83,7 @@ const BackCard = styled.div`
   position: absolute;
   backface-visibility: hidden;
 
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   border: solid 1px black;
   transform: rotateY(180deg);
 `;
@@ -93,5 +93,5 @@ const FrontCard = styled.div`
   position: absolute;
   backface-visibility: hidden;
 
-  background-color: rgb(0, 0, 0);
+  background-color: ${({ theme }) => theme.colors.black};
 `;

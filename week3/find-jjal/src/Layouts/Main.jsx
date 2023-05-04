@@ -3,7 +3,8 @@ import { useState } from "react";
 import LvBtnList from "../Components/levelBtnList";
 import CardList from "../Components/CardList";
 
-function Main({correctNum}) {
+function Main(props) {
+  const {correctNum,isResetClicked}=props;
   const [level, setLevel] = useState();
   const getLevel = (lv) => {
     setLevel(lv);
@@ -11,6 +12,7 @@ function Main({correctNum}) {
   const getAnswer=(answer)=>{
     correctNum(answer);
   }
+  console.log(isResetClicked);
   return (
     <StyledMain>
       <LevelContainer>
