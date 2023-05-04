@@ -11,7 +11,6 @@ const CardList = ({ level }) => {
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
   const [flippedCardIDList,setFlippedCardIDList]=useState([]); //뒤집어진 카드의 id를 저장
   const [correctCardList,setCorrectCardList]=useState([]);
-  const [wrongCardList, setWrongCardList] = useState([]);
   const IMG = [
     "src/assets/01.jpeg",
     "src/assets/02.jpeg",
@@ -52,7 +51,8 @@ const CardList = ({ level }) => {
   // 처음에 로드될 때는 빈 배열로 설정
   useEffect(() => {
     setcardUrlList([]);
-    setFlippedCardList([]);
+    // setFlippedCardList([]);
+    // setCorrectCardList([]);
   }, []);
 
   /**
@@ -64,14 +64,17 @@ const CardList = ({ level }) => {
       const randomURLList = randomImgChoice(5);
       randomURLList.map((url) => randomURLList.push(url)); // 쌍으로 들어가야함
       setcardUrlList(shuffle(randomURLList)); //셔플을 통해 섞은 배열
+      setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
     } else if (level === "NORMAL") {
       const randomURLList = randomImgChoice(7);
       randomURLList.map((url) => randomURLList.push(url));
       setcardUrlList(shuffle(randomURLList));
+      setCorrectCardList([]);
     } else if (level === "HARD") {
       const randomURLList = randomImgChoice(9);
       randomURLList.map((url) => randomURLList.push(url));
       setcardUrlList(shuffle(randomURLList));
+      setCorrectCardList([]);
     }
   }, [level]);
 
@@ -83,14 +86,15 @@ const CardList = ({ level }) => {
     setFlippedCardList([...flippedCardList, card]);
     setFlippedCardIDList([...flippedCardIDList,cardID]);
   };
+  
   useEffect(() => {
     if (flippedCardList.length == 2) {
       //쌍이 이루어질 때마다 확인
-      flippedCardList[0] === flippedCardList[1]
-        ? setCorrectCardList([...flippedCardList]) //같을 때 현재 뒤집한 쌍을 전달
-        : setWrongCardList([...flippedCardIDList]); //다를 때는 카드 각각의 id를 전달
-      setFlippedCardList([]); //2개 확인 후 배열 초기화
-      setFlippedCardIDList([]); //2개 확인 후 배열 초기화
+      if (flippedCardList[0] === flippedCardList[1]) setCorrectCardList([...correctCardList,flippedCardList[0]]); //같을 때 현재 뒤집한 쌍을 전달
+      setTimeout(()=>{
+        setFlippedCardList([]); //2개 확인 후 배열 초기화
+        setFlippedCardIDList([]); //2개 확인 후 배열 초기화
+      },500);
     }
   }, [flippedCardList, flippedCardIDList]);
 
@@ -100,8 +104,8 @@ const CardList = ({ level }) => {
       key={idx}
       number={idx}
       clickedCards={handleClickedCards}
-      flippedCards={correctCardList}
-      unFlippedCards={wrongCardList} //다시 뒤집어야 하는 틀린 배열을 전달
+      flippedCards={flippedCardIDList}
+      correctCardList={correctCardList}
     ></Card>
   ));
 };

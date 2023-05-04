@@ -6,30 +6,24 @@ import styled, { css } from "styled-components";
  * - props : imgUrl (CardList 컴포넌트로부터 imgUrl을 props로 받아와 알맞은 이미지를 띄운다.)
  */
 const Card = (props) => {
-  const { imgUrl, number, clickedCards, flippedCards, unFlippedCards } = props;
-  const [isCardClick, setIsCardClick] = useState(false);
-  const [isUnPair, setIsUnPair] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      unFlippedCards.includes(String(number))
-        ? setIsUnPair(true)
-        : (setIsUnPair(false), setIsCardClick(false));
-    }, 500);
-  }, [unFlippedCards]);
+  const { imgUrl, number, clickedCards, flippedCards, correctCardList } = props;
 
   return (
     <CardContainer
       onClick={(e) => {
-        const imgClass = e.target.parentNode.childNodes[1].className.slice(-1); //선택된 카드의 className을 전달 (같은 이미지를 구분하기 위함)
-        clickedCards(imgUrl, imgClass), setIsCardClick(true);
+        const imgClass = e.target.parentNode.childNodes[1].className.split(" ")[2]; //선택된 카드의 className을 전달 (같은 이미지를 구분하기 위함)
+        clickedCards(imgUrl, imgClass);
       }}
     >
       <BackCard></BackCard>
       <CardImg src={imgUrl} alt="카드에 삽입될 이미지" className={number} />
-      {/* && imgUrl.includes(flippedCards) */}
-      {isCardClick ? <></>:<FrontCard></FrontCard>}
-      {isUnPair ? <FrontCard></FrontCard> : <></>}
+      {flippedCards.includes(String(number)) ||
+      correctCardList.includes(imgUrl) ? (
+        <></>
+      ) : (
+        <FrontCard></FrontCard>
+      )}
+      {/* {isUnPair ? <FrontCard></FrontCard> : <></>} */}
     </CardContainer>
   );
 };
