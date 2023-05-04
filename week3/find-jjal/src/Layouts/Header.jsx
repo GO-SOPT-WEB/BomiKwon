@@ -11,7 +11,7 @@ import styled, { css } from "styled-components";
  * 1) fade : answer(정답 수)가 업데이트 될때마다 글씨 빛번짐 효과를 주기 위한 상태
  */
 function Header(props) {
-  const { answer, isResetBtnClicked, isResetClicked } = props;
+  const { answer, cardLength,isResetBtnClicked, isResetClicked } = props;
   const [fade, setFade] = useState("");
 
   /**
@@ -31,7 +31,9 @@ function Header(props) {
     <StyledHeader>
       <TitleContainer>
         <h1>사모예드를 맞춰주세요</h1>
-        <h2 className={"start " + fade}>{answer}/5</h2> 
+        <h2 className={"start " + fade}>
+          {answer}/{cardLength}
+        </h2>
       </TitleContainer>
       <BtnContainer
         type="button"
