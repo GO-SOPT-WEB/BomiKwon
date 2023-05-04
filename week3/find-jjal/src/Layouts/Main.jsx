@@ -3,18 +3,21 @@ import { useState } from "react";
 import LvBtnList from "../Components/levelBtnList";
 import CardList from "../Components/CardList";
 
-function Main() {
+function Main({correctNum}) {
   const [level, setLevel] = useState();
   const getLevel = (lv) => {
     setLevel(lv);
   };
+  const getAnswer=(answer)=>{
+    correctNum(answer);
+  }
   return (
     <StyledMain>
       <LevelContainer>
         <LvBtnList getLevel={getLevel}></LvBtnList>
       </LevelContainer>
       <CardsContainer>
-        <CardList level={level}></CardList>
+        <CardList getAnswer={getAnswer}level={level}></CardList>
       </CardsContainer>
     </StyledMain>
   );

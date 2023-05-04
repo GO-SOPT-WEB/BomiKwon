@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
-function Header() {
-  // const [answer,setAnswer]=useState(0);
+function Header({ answer }) {
+  const [isChanged, setIsChanged] = useState(false);
   const [isClick, setIsClick] = useState(false);
-
+  useEffect(() => {
+    setIsChanged(true);
+  }, answer);
   return (
     <StyledHeader>
-      <TitleContainer>
+      <TitleContainer isChanged={isChanged}>
         <h1>사모예드를 맞춰주세요</h1>
-        <h2>0/5</h2>
+        <h2>{answer}/5</h2>
       </TitleContainer>
       <BtnContainer
         type="button"
@@ -33,6 +35,13 @@ const StyledHeader = styled.header`
 const TitleContainer = styled.div`
   width: 70%;
   text-align: center;
+  &h2{
+    ${(props)=>{
+      props.isChanged?
+      css``:
+      css``;
+    }}
+  }
 `;
 const BtnContainer = styled.button`
   width: 10rem;
