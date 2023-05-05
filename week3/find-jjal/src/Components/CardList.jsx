@@ -18,9 +18,24 @@ const CardList = (props) => {
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
   const [flippedCardIDList, setFlippedCardIDList] = useState([]); //뒤집어진 카드의 id를 저장
   const [correctCardList, setCorrectCardList] = useState([]); //짝이 맞는 쌍을 담은 배열
-  
+
   useEffect(() => {
-    setCorrectCardList([]);
+    if (level === "EASY") {
+      const randomURLList = randomImgChoice(5);
+      randomURLList.map((url) => randomURLList.push(url)); // 쌍으로 들어가야함
+      setcardUrlList(shuffle(randomURLList)); //셔플을 통해 섞은 배열
+      setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
+    } else if (level === "NORMAL") {
+      const randomURLList = randomImgChoice(7);
+      randomURLList.map((url) => randomURLList.push(url));
+      setcardUrlList(shuffle(randomURLList));
+      setCorrectCardList([]);
+    } else if (level === "HARD") {
+      const randomURLList = randomImgChoice(9);
+      randomURLList.map((url) => randomURLList.push(url));
+      setcardUrlList(shuffle(randomURLList));
+      setCorrectCardList([]);
+    }
   }, [isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달
 
   useEffect(() => {
