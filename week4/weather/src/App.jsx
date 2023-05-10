@@ -1,10 +1,15 @@
-import { useState } from 'react'
-import DetailCardInfo from './components/DetailCardInfo'
+import { ThemeProvider } from "styled-components";
+import Router from "./Router";
+import GlobalStyle from "./styles/globalStyle";
+import theme from "./styles/theme";
 
-function App() {
-  return(
-    <DetailCardInfo></DetailCardInfo>
-  )
-}
+const App = () => (
+  <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
+  </>
+);
 
-export default App
+export default App;
