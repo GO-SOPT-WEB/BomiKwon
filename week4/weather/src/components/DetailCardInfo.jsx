@@ -18,7 +18,7 @@ const DetailCardInfo = (props) => {
         </St.Header>
       ) : (
         <St.Header>
-          <h3>{cardData.dt_txt}</h3>
+          <h3>{cardData.name}</h3>
         </St.Header>
       )}
       {weather_url && <St.Img src={weather_url.imgURL} alt={cardData.name} />}
