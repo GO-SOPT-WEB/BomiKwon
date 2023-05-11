@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import DetailCard from "./DetailCard";
+import DetailCardInfo from "./DetailCardInfo";
 import styled from "styled-components";
 /**
  * 오늘 날씨 컴포넌트 : day/area 형태로 라우팅 시
@@ -54,7 +54,7 @@ const DayDetailCardInfo = () => {
 
   return (
     <St.CardListWrapper>
-      {cardData && <DetailCard cardData={cardData}/>}
+      {cardData && <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />}
     </St.CardListWrapper>
   );
 };
@@ -64,6 +64,7 @@ const St = {
   CardListWrapper: styled.section`
     display: flex;
     flex-wrap: wrap;
+    justify-content:center;
     align-items: center;
     gap: 1rem;
 

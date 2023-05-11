@@ -1,9 +1,14 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import DetailCardInfo from "./DetailCardInfo";
+import styled from 'styled-components';
+
 /**
  * 주간 날씨 컴포넌트 : week/area 형태로 라우팅 시
  */
 const WeekDetailCardInfo = () => {
+  const [cardListData, setCardListData] = useState();
   const { area } = useParams();
   const getFiveDetailCardInfo = (area) => {
     fetch(
@@ -14,7 +19,6 @@ const WeekDetailCardInfo = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.cod == 200) {
-          console.log(data);
           const detailData = [];
           // 날짜 : 어제, 오늘, 내일, 이틀 뒤, 3일 뒤
           // 인덱스 : 0, 8, 16, 24, 32 (18:00 기준)
@@ -39,14 +43,42 @@ const WeekDetailCardInfo = () => {
             };
             detailData.push(detailDataTmp);
           }
-          console.log(detailData);
+          setCardListData(detailData);
         }
       })
       .catch((err) => console.log(err));
   };
 
-  getFiveDetailCardInfo(area);
-  return <></>;
+  useEffect(() => {
+    getFiveDetailCardInfo(area);
+  }, [area]);
+
+  return (
+    <St.CardListWrapper>
+      {cardListData &&
+        cardListData.map((item) => (
+          <DetailCardInfo
+            isDayOrWeek={'week'}
+            cardData={item}
+            key={cardListData.indexOf(item)}
+          />
+        ))}
+    </St.CardListWrapper>
+  );
 };
 
 export default WeekDetailCardInfo;
+const St = {
+  CardListWrapper: styled.section`
+    width: 100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap: 1rem;
+
+    padding: 1rem;
+
+    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
+  `,
+};
