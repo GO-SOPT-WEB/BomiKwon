@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import DetailCardInfo from "./DetailCardInfo";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 /**
  * 주간 날씨 컴포넌트 : week/area 형태로 라우팅 시
@@ -53,28 +53,32 @@ const WeekDetailCardInfo = () => {
     getFiveDetailCardInfo(area);
   }, [area]);
 
-  return (
-    <St.CardListWrapper>
-      {cardListData &&
-        cardListData.map((item) => (
-          <DetailCardInfo
-            isDayOrWeek={'week'}
-            cardData={item}
-            key={cardListData.indexOf(item)}
-          />
-        ))}
-    </St.CardListWrapper>
-  );
+  if (cardListData) {
+    return (
+      <St.CardListWrapper>
+        {cardListData &&
+          cardListData.map((item) => (
+            <DetailCardInfo
+              isDayOrWeek={"week"}
+              cardData={item}
+              key={cardListData.indexOf(item)}
+            />
+          ))}
+      </St.CardListWrapper>
+    );
+  } else {
+    return <div>에러입니다</div>;
+  }
 };
 
 export default WeekDetailCardInfo;
 const St = {
   CardListWrapper: styled.section`
     width: 100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     gap: 1rem;
 
     padding: 1rem;

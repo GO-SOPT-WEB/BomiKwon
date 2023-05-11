@@ -52,11 +52,15 @@ const DayDetailCardInfo = () => {
     getOneDetailCardInfo(area);
   }, [area]);
 
-  return (
-    <St.CardListWrapper>
-      {cardData && <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />}
-    </St.CardListWrapper>
-  );
+  if (cardData) {
+    return (
+      <St.CardListWrapper>
+        {cardData && <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />}
+      </St.CardListWrapper>
+    );
+  } else {
+    return <div>에러입니다</div>;
+  }
 };
 
 export default DayDetailCardInfo;
@@ -64,7 +68,7 @@ const St = {
   CardListWrapper: styled.section`
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
 
