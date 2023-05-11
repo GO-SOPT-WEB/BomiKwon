@@ -1,14 +1,20 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import DetailCard from "./DetailCard";
+import styled from "styled-components";
 /**
  * 오늘 날씨 컴포넌트 : day/area 형태로 라우팅 시
  */
 const DayDetailCardInfo = () => {
+  const [cardData, setCardData] = useState();
   const now = new Date(); // 현재 날짜 및 시간
   const month = now.getMonth();
   const date = now.getDate();
   const { area } = useParams();
   console.log(area);
+
   const getOneDetailCardInfo = (area) => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${area}&appid=${
@@ -36,14 +42,34 @@ const DayDetailCardInfo = () => {
             },
             dt_txt: `${month + 1}-${date}`, // 날짜
           };
-          console.log(detailData);
+          setCardData(detailData);
         }
       })
       .catch((err) => console.log(err));
   };
 
-  getOneDetailCardInfo(area);
-  return <></>;
+  useEffect(() => {
+    getOneDetailCardInfo(area);
+  }, [area]);
+
+  return (
+    <St.CardListWrapper>
+      {cardData && <DetailCard cardData={cardData}/>}
+    </St.CardListWrapper>
+  );
 };
 
 export default DayDetailCardInfo;
+const St = {
+  CardListWrapper: styled.section`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 1rem;
+
+    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
+  `,
+};
