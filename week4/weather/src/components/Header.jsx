@@ -33,21 +33,22 @@ const Header = () => {
     <>
       <St.HeaderWrapper>
         <h1>기상캐스터 뽐</h1>
+        <St.SearchWrapper>
+          <select name="주간/오늘" onChange={handleSelectChange}>
+            <option value="주간">주간</option>
+            <option value="오늘">오늘</option>
+          </select>
+
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              placeholder="영어로 도시명 ex)seoul"
+              onChange={handleInputChange}
+            />
+            <button type="submit">날씨검색</button>
+          </form>
+        </St.SearchWrapper>
       </St.HeaderWrapper>
-
-      <select name="주간/오늘" onChange={handleSelectChange}>
-        <option value="주간">주간</option>
-        <option value="오늘">오늘</option>
-      </select>
-
-      <form onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          placeholder="영어로 도시명 ex)seoul"
-          onChange={handleInputChange}
-        />
-        <button type="submit">날씨검색</button>
-      </form>
     </>
   );
 };
@@ -61,25 +62,33 @@ const St = {
     width: 100%;
     padding: 2rem;
 
-    background-color: ${({ theme }) => theme.colors.Sopt_Purple};
+    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
 
     & > h1 {
+      width: 30%;
       ${({ theme }) => theme.fonts.B_Title_1};
-      color: ${({ theme }) => theme.colors.Sopt_White};
+      color: ${({ theme }) => theme.colors.Sopt_Black};
+      padding: 3rem;
       cursor: pointer;
     }
-    & > h2 {
-      padding: 1rem;
-
-      ${({ theme }) => theme.fonts.B_Title_3};
-      background-color: ${({ theme }) => theme.colors.Sopt_White};
-      border-radius: 1rem;
-
-      cursor: pointer;
-      :hover {
-        color: ${({ theme }) => theme.colors.Sopt_White};
-        background-color: ${({ theme }) => theme.colors.Sopt_Black};
-      }
+  `,
+  SearchWrapper: styled.div`
+    display: flex;
+    align-items: center;
+    padding-left:30rem;
+    width: 90%;
+    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
+    & > select {
+      width: 8rem;
+      margin: 0.5rem;
+    }
+    & > form > input {
+      height: 5rem;
+      margin: 0.5rem;
+    }
+    & > form > button {
+      height: 5rem;
+      margin: 0.5rem;
     }
   `,
 };

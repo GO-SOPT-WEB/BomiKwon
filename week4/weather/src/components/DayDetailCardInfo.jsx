@@ -66,15 +66,15 @@ const DayDetailCardInfo = () => {
 export default DayDetailCardInfo;
 const St = {
   CardListWrapper: styled.section`
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
 
-    width: 100%;
     padding: 1rem;
 
-    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
+    background-color: ${({ theme }) => theme.colors.Sopt_Light_Yellow};
   `,
 };

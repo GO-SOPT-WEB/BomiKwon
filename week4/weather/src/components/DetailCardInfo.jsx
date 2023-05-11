@@ -49,7 +49,6 @@ const DetailCardInfo = (props) => {
 export default DetailCardInfo;
 
 const St = {
-
   DetailCardContentWrapper: styled.div`
     display: flex;
     justify-content: center;
@@ -61,9 +60,10 @@ const St = {
     padding: 2rem;
     margin-top: 5rem;
 
-    background-color: ${({ theme }) => theme.colors.Sopt_Pink};
+    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
     border-radius: 1rem;
-    box-shadow: 0.3rem 0.3rem 0.3rem ${({ theme }) => theme.colors.Sopt_Coral};
+    box-shadow: 0.5rem 0.5rem 0.5rem
+      ${({ theme }) => theme.colors.Sopt_Light_Yellow};
   `,
   Img: styled.img`
     width: 18rem;
@@ -75,7 +75,7 @@ const St = {
   Header: styled.header`
     h3 {
       ${({ theme }) => theme.fonts.M_Title_1};
-      color: ${({ theme }) => theme.colors.Sopt_Purple};
+      color: ${({ theme }) => theme.colors.Sopt_Black};
     }
   `,
   Content: styled.p`
@@ -88,6 +88,9 @@ const St = {
     > div {
       display: flex;
       justify-content: space-between;
+    }
+    > div > span {
+      ${({ theme }) => theme.fonts.R_Content_3};
     }
   `,
 };

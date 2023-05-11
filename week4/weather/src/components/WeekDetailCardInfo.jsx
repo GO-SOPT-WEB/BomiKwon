@@ -83,6 +83,6 @@ const St = {
 
     padding: 1rem;
 
-    background-color: ${({ theme }) => theme.colors.Sopt_Blue};
+    background-color: ${({ theme }) => theme.colors.Sopt_Light_Yellow};
   `,
 };

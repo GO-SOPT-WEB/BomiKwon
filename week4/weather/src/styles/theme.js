@@ -19,7 +19,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   B_Title_2: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 700;
     font-size: 3rem;
@@ -27,7 +28,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   B_Title_3: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 700;
     font-size: 2rem;
@@ -35,7 +37,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   M_Title_1: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 500;
     font-size: 4rem;
@@ -43,7 +46,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   M_SubTitle_1: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 500;
     font-size: 3rem;
@@ -51,7 +55,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   R_SubTitle_1: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 400;
     font-size: 2rem;
@@ -59,7 +64,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   R_SubTitle_2: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 400;
     font-size: 1rem;
@@ -67,7 +73,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   B_Content_1: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 700;
     font-size: 3rem;
@@ -75,7 +82,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   M_Content_2: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 500;
     font-size: 2rem;
@@ -83,7 +91,8 @@ const fonts = {
     letter-spacing: -0.05rem;
   `,
   R_Content_3: css`
-    font-family: "TmoneyRoundWindExtraBold";
+
+    font-family: "MYArirang_gothic"; 
     font-style: normal;
     font-weight: 400;
     font-size: 1.8rem;
