@@ -1,5 +1,7 @@
 import Card from "./Card";
 import { useState, useEffect } from "react";
+import { IMG } from "../assets/utils";
+import { randomImgChoice } from "../assets/utils";
 
 /**
  * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
@@ -20,64 +22,8 @@ const CardList = (props) => {
   const [correctCardList, setCorrectCardList] = useState([]); //짝이 맞는 쌍을 담은 배열
 
   useEffect(() => {
-    if (level === "EASY") {
-      const randomURLList = randomImgChoice(5);
-      randomURLList.map((url) => randomURLList.push(url)); // 쌍으로 들어가야함
-      setcardUrlList(shuffle(randomURLList)); //셔플을 통해 섞은 배열
-      setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
-    } else if (level === "NORMAL") {
-      const randomURLList = randomImgChoice(7);
-      randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(shuffle(randomURLList));
-      setCorrectCardList([]);
-    } else if (level === "HARD") {
-      const randomURLList = randomImgChoice(9);
-      randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(shuffle(randomURLList));
-      setCorrectCardList([]);
-    }
-  }, [isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달
-
-  useEffect(() => {
     getAnswer(correctCardList.length);
   }, [correctCardList]);
-
-  const IMG = [
-    "src/assets/Images/01.jpeg",
-    "src/assets/Images/02.jpeg",
-    "src/assets/Images/03.jpeg",
-    "src/assets/Images/04.jpeg",
-    "src/assets/Images/05.jpeg",
-    "src/assets/Images/06.jpeg",
-    "src/assets/Images/07.jpeg",
-    "src/assets/Images/08.jpeg",
-    "src/assets/Images/09.jpeg",
-  ];
-  /**
-   * 카드 선택, 배치 랜덤으로 하는 부분
-   */
-  // 쌍이 묶인 배열들을 무작위로 섞어 랜덤으로 배치되게끔
-  const shuffle = (array) => {
-    array.sort(() => Math.random() - 0.5);
-    return array;
-  };
-  // 정해진 개수num만큼 카드를 랜덤하게 선택
-  const randomImgChoice = (num) => {
-    const indexOfIMG = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    var cnt = 0;
-    const newImgs = []; // 랜덤하게 정해진 이미지
-    while (cnt < num) {
-      //정해진 개수까지만 선택
-      var randomIndex = indexOfIMG.splice(
-        //중복을 방지하기 위해 splice 사용
-        Math.floor(Math.random() * indexOfIMG.length),
-        1
-      )[0];
-      newImgs.push(IMG[randomIndex]);
-      cnt += 1;
-    }
-    return newImgs;
-  };
 
   // 처음에 로드될 때는 빈 배열로 설정
   useEffect(() => {
@@ -90,24 +36,17 @@ const CardList = (props) => {
    * 레벨이 업데이트 될 때마다 난이도에 따른
    * 카드에 들어갈 이미지 url을 랜덤으로 지정
    */
+  const levelNumber = {
+    EASY: 5,
+    NORMAL: 7,
+    HARD: 9,
+  };
+
   useEffect(() => {
-    if (level === "EASY") {
-      const randomURLList = randomImgChoice(5);
-      randomURLList.map((url) => randomURLList.push(url)); // 쌍으로 들어가야함
-      setcardUrlList(shuffle(randomURLList)); //셔플을 통해 섞은 배열
-      setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
-    } else if (level === "NORMAL") {
-      const randomURLList = randomImgChoice(7);
-      randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(shuffle(randomURLList));
-      setCorrectCardList([]);
-    } else if (level === "HARD") {
-      const randomURLList = randomImgChoice(9);
-      randomURLList.map((url) => randomURLList.push(url));
-      setcardUrlList(shuffle(randomURLList));
-      setCorrectCardList([]);
-    }
-  }, [level]);
+    const randomURLList = randomImgChoice(levelNumber[level], IMG);
+    setcardUrlList(randomURLList);
+    setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
+  }, [level, isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달 // level이 바뀔 때마다
 
   /**
    * 클릭될 때마다 해당 카드의 정보를 받아오는 부분

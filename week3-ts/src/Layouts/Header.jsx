@@ -11,7 +11,7 @@ import styled, { css } from "styled-components";
  * 1) fade : answer(정답 수)가 업데이트 될때마다 글씨 빛번짐 효과를 주기 위한 상태
  */
 function Header(props) {
-  const { answer, cardLength,isResetBtnClicked, isResetClicked } = props;
+  const { answer, cardLength, handleResetBtn, isResetClicked } = props;
   const [fade, setFade] = useState("");
 
   /**
@@ -38,7 +38,7 @@ function Header(props) {
       <BtnContainer
         type="button"
         onClick={() => {
-          isResetBtnClicked(!isResetClicked); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
+          handleResetBtn(!isResetClicked); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
         }}
       >
         RESET

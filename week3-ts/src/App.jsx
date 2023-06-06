@@ -40,11 +40,11 @@ function App() {
   };
 
   useEffect(() => {
-    if(answer===cardLength && cardLength!==0){
-      modalOpen()
+    if (answer === cardLength && cardLength !== 0) {
+      modalOpen();
     }
-  }, [answer, cardLength]);
-  
+  }, [answer]); //cardLength
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -54,13 +54,13 @@ function App() {
             open={isModalOpen}
             onClose={() => {
               SetIsModalOpen(false);
-              setIsResetClicked((prev)=>!prev);
+              setIsResetClicked((prev) => !prev);
             }}
           />
         )}
         <Header
           answer={answer}
-          isResetBtnClicked={handleResetBtn}
+          handleResetBtn={handleResetBtn}
           isResetClicked={isResetClicked}
           cardLength={cardLength}
         ></Header>
