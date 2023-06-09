@@ -1,19 +1,17 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { selectedLevelState } from "../atom/atom";
 
 const Button = (props) => {
-  const [isClick, setIsClick] = useState(false);
-  const [curLevel, setCurLevel] = useState("EASY");
-  const toggleClick = () => {
-    setIsClick((prev) => !prev);
-    if (isClick) {
-      setCurLevel(text);
-    }
-  };
   const { text, width } = props;
-  console.log(width);
+  const [select, setSelect] = useRecoilState(selectedLevelState);
+
+  const [isClick, setIsClick] = useState(false);
+  const updateSelect = () => setSelect({ text });
+  
   return (
-    <StyledBtn type="button" isClick={isClick} onClick={toggleClick}>
+    <StyledBtn type="button" isClick={isClick} onClick={updateSelect}>
       {text}
     </StyledBtn>
   );

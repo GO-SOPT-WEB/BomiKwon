@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { IMG } from "../assets/utils";
 import { randomImgChoice } from "../assets/utils";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { levelSelectState, levelState } from "../atom/store";
+import { levelSelectState } from "../atom/atom";
 
 /**
  * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
@@ -17,7 +17,7 @@ import { levelSelectState, levelState } from "../atom/store";
  * 4) correctCardList : flippedCardList로 받아온 뒤집힌 카드가 짝일 시에, 짝을 맞춘 imgURL을 저장
  */
 const CardList = (props) => {
-  const level = useRecoilValue(levelState)[0];
+  const level = useRecoilValue(levelSelectState);
 
   const { getAnswer, isResetClicked } = props;
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
@@ -40,14 +40,8 @@ const CardList = (props) => {
    * 레벨이 업데이트 될 때마다 난이도에 따른
    * 카드에 들어갈 이미지 url을 랜덤으로 지정
    */
-  const levelNumber = {
-    EASY: 5,
-    NORMAL: 7,
-    HARD: 9,
-  };
-
   useEffect(() => {
-    const randomURLList = randomImgChoice(levelNumber[level], IMG);
+    const randomURLList = randomImgChoice(level, IMG);
     setcardUrlList(randomURLList);
     setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
   }, [level, isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달 // level이 바뀔 때마다

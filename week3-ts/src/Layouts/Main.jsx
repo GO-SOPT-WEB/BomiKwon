@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
-import LvBtnList from "../Components/levelBtnList";
 import CardList from "../Components/CardList";
 import Button from "../Components/Button";
 
@@ -14,21 +12,7 @@ import Button from "../Components/Button";
  */
 function Main(props) {
   const { correctNum, cardLength, isResetClicked } = props;
-  const [level, setLevel] = useState("EASY");
 
-  /**
-   * LvBtnList으로부터 level을 받아오는 부분
-   */
-  const getLevel = (lv) => {
-    setLevel(lv);
-    if (lv === "EASY") {
-      cardLength(5);
-    } else if (lv === "NORMAL") {
-      cardLength(7);
-    } else if (lv === "HARD") {
-      cardLength(9);
-    }
-  };
   /**
    * LvBtnList으로부터 answer을 받아오는 부분
    */
@@ -36,25 +20,21 @@ function Main(props) {
     correctNum(answer);
   };
 
-  const levelNumber = {
-    EASY: 5,
-    NORMAL: 7,
-    HARD: 9,
-  };
+  const levelText = ["EASY", "NORMAL", "HARD"];
   return (
     <StyledMain>
       <LevelContainer>
-        {Object.keys(levelNumber).map((level) => (
+        {levelText.map((level) => (
           <Button
             text={level} //버튼에 들어갈 텍스트 전달
             width={50}
+            key={level}
           ></Button>
         ))}
       </LevelContainer>
       <CardsContainer>
         <CardList
           getAnswer={getAnswer}
-          level={level}
           isResetClicked={isResetClicked}
         ></CardList>
       </CardsContainer>
