@@ -6,16 +6,15 @@ function Modal({ onClose }) {
     onClose?.();
   };
   return (
-      <Overlay>
-        <ModalWrap>
-          <CloseButton onClick={handleClose}>
-          </CloseButton>
-          <Contents>
-            <h1>축하합니다!</h1>
-            <Button onClick={handleClose}>게임으로 돌아가기</Button>
-          </Contents>
-        </ModalWrap>
-      </Overlay>
+    <Overlay>
+      <ModalWrap>
+        <CloseButton onClick={handleClose}></CloseButton>
+        <Contents>
+          <h1>축하합니다!</h1>
+          <Button onClick={handleClose}>게임으로 돌아가기</Button>
+        </Contents>
+      </ModalWrap>
+    </Overlay>
   );
 }
 

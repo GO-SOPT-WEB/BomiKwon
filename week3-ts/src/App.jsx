@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./assets/Styles/GlobalStyle";
 import theme from "./assets/Styles/theme";
+import { RecoilRoot } from "recoil";
 
 /**
  * App 컴포넌트 : Header와 Main을 포함하는 App 컴포넌트
@@ -47,29 +48,31 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {isModalOpen && (
-          <ModalPortal
-            open={isModalOpen}
-            onClose={() => {
-              SetIsModalOpen(false);
-              setIsResetClicked((prev) => !prev);
-            }}
-          />
-        )}
-        <Header
-          answer={answer}
-          handleResetBtn={handleResetBtn}
-          isResetClicked={isResetClicked}
-          cardLength={cardLength}
-        ></Header>
-        <Main
-          correctNum={handleCorrectNum}
-          cardLength={handlecardLength}
-          isResetClicked={isResetClicked}
-        ></Main>
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          {isModalOpen && (
+            <ModalPortal
+              open={isModalOpen}
+              onClose={() => {
+                SetIsModalOpen(false);
+                setIsResetClicked((prev) => !prev);
+              }}
+            />
+          )}
+          <Header
+            answer={answer}
+            handleResetBtn={handleResetBtn}
+            isResetClicked={isResetClicked}
+            cardLength={cardLength}
+          ></Header>
+          <Main
+            correctNum={handleCorrectNum}
+            cardLength={handlecardLength}
+            isResetClicked={isResetClicked}
+          ></Main>
+        </ThemeProvider>
+      </RecoilRoot>
     </>
   );
 }

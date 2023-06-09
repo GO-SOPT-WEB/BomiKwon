@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import LvBtnList from "../Components/levelBtnList";
 import CardList from "../Components/CardList";
+import Button from "../Components/Button";
 
 /**
  * Main 컴포넌트 : CardList와 LvBtnList를 통해 카드와 레벨을 관리하는 부분
@@ -13,7 +14,8 @@ import CardList from "../Components/CardList";
  */
 function Main(props) {
   const { correctNum, cardLength, isResetClicked } = props;
-  const [level, setLevel] = useState();
+  const [level, setLevel] = useState("EASY");
+
   /**
    * LvBtnList으로부터 level을 받아오는 부분
    */
@@ -34,10 +36,20 @@ function Main(props) {
     correctNum(answer);
   };
 
+  const levelNumber = {
+    EASY: 5,
+    NORMAL: 7,
+    HARD: 9,
+  };
   return (
     <StyledMain>
       <LevelContainer>
-        <LvBtnList getLevel={getLevel}></LvBtnList>
+        {Object.keys(levelNumber).map((level) => (
+          <Button
+            text={level} //버튼에 들어갈 텍스트 전달
+            width={50}
+          ></Button>
+        ))}
       </LevelContainer>
       <CardsContainer>
         <CardList
