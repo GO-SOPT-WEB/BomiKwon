@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./assets/Styles/GlobalStyle";
 import theme from "./assets/Styles/theme";
-import { RecoilRoot } from "recoil";
 
 /**
  * App 컴포넌트 : Header와 Main을 포함하는 App 컴포넌트
@@ -48,7 +47,6 @@ function App() {
 
   return (
     <>
-      <RecoilRoot>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isModalOpen && (
@@ -72,7 +70,6 @@ function App() {
             isResetClicked={isResetClicked}
           ></Main>
         </ThemeProvider>
-      </RecoilRoot>
     </>
   );
 }

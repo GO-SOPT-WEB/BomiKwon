@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { useRecoilValue } from "recoil";
-import { levelSelectState } from "../atom/atom";
-
+// import { levelSelectState } from "../atom/store";
+import levelAtom from "../recoil/level/atom";
+// import { answerState } from "../atom/store";
 /**
  * Header 컴포넌트 : 제목, 점수, 리셋버튼을 포함하는 컴포넌트
  * - props
@@ -13,8 +14,10 @@ import { levelSelectState } from "../atom/atom";
  * 1) fade : answer(정답 수)가 업데이트 될때마다 글씨 빛번짐 효과를 주기 위한 상태
  */
 function Header(props) {
-  const level = useRecoilValue(levelSelectState);
-  const { answer, handleResetBtn, isResetClicked } = props;
+  const level = useRecoilValue(levelAtom);
+  // const answer = useRecoilValue(answerState);
+  // console.log(answer);
+  const { handleResetBtn, isResetClicked } = props;
   const [fade, setFade] = useState("");
 
   /**
@@ -28,14 +31,14 @@ function Header(props) {
       clearTimeout(a);
       setFade("");
     };
-  }, [answer]);
+  }, []); //[answer]
 
   return (
     <StyledHeader>
       <TitleContainer>
         <h1>사모예드를 맞춰주세요</h1>
         <h2 className={"start " + fade}>
-          {answer}/{level}
+          {/* {answer}/{level} */}/{level}
         </h2>
       </TitleContainer>
       <BtnContainer

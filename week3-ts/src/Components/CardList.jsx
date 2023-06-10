@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { IMG } from "../assets/utils";
 import { randomImgChoice } from "../assets/utils";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { levelSelectState } from "../atom/atom";
-
+// import { levelSelectState } from "../atom/store";
+import levelAtom from "../recoil/level/atom";
 /**
  * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
  * - props
@@ -17,8 +17,8 @@ import { levelSelectState } from "../atom/atom";
  * 4) correctCardList : flippedCardList로 받아온 뒤집힌 카드가 짝일 시에, 짝을 맞춘 imgURL을 저장
  */
 const CardList = (props) => {
-  const level = useRecoilValue(levelSelectState);
-
+  const level = useRecoilValue(levelAtom);
+  // const [answer, setAnswer] = useRecoilState(answerState);
   const { getAnswer, isResetClicked } = props;
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
@@ -26,7 +26,7 @@ const CardList = (props) => {
   const [correctCardList, setCorrectCardList] = useState([]); //짝이 맞는 쌍을 담은 배열
 
   useEffect(() => {
-    getAnswer(correctCardList.length);
+    // setAnswer(correctCardList.length);
   }, [correctCardList]);
 
   // 처음에 로드될 때는 빈 배열로 설정
