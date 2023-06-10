@@ -5,11 +5,12 @@ import { randomImgChoice } from "../assets/utils";
 import { useRecoilValue, useRecoilState } from "recoil";
 // import { levelSelectState } from "../atom/store";
 import levelAtom from "../recoil/level/atom";
+import { totalAnswer } from "../recoil/answer/selectors";
+import { resetAtom } from "../recoil/answer/atom";
+
 /**
  * CardList 컴포넌트 : Card 컴포넌트를 묶은 컴포넌트
  * - props
- * 1) level (Main에서 props로 level을 전달받아, 해당 난이도에 따른 카드 개수에 맞게 출력한다)
- * 2) getAnswer : Main 컴포넌트(상위)로 현재 맞춘 쌍의 카드 개수를 전달
  * - state
  * 1) cardUrlList : level이 바뀔 때마다 해당 레벨의 카드 개수에 맞게 img url 배열을 관리
  * 2) flippedCardList : handleClickedCards을 통해 Card 컴포넌트(하위)에서 받아온 뒤집힌 카드의 imgURL을 관리
@@ -18,15 +19,15 @@ import levelAtom from "../recoil/level/atom";
  */
 const CardList = (props) => {
   const level = useRecoilValue(levelAtom);
-  // const [answer, setAnswer] = useRecoilState(answerState);
-  const { getAnswer, isResetClicked } = props;
+  const [answer, setAnswer] = useRecoilState(totalAnswer);
+  const reset = useRecoilValue(resetAtom);
   const [cardUrlList, setcardUrlList] = useState([]); // 카드에 넣을 이미지 url을 담은 배열
   const [flippedCardList, setFlippedCardList] = useState([]); //뒤집어진 한 쌍의 카드 url을 담은 배열
   const [flippedCardIDList, setFlippedCardIDList] = useState([]); //뒤집어진 카드의 id를 저장
   const [correctCardList, setCorrectCardList] = useState([]); //짝이 맞는 쌍을 담은 배열
 
   useEffect(() => {
-    // setAnswer(correctCardList.length);
+    setAnswer(correctCardList.length);
   }, [correctCardList]);
 
   // 처음에 로드될 때는 빈 배열로 설정
@@ -44,7 +45,7 @@ const CardList = (props) => {
     const randomURLList = randomImgChoice(level, IMG);
     setcardUrlList(randomURLList);
     setCorrectCardList([]); // 난이도 중간에 바꿀시, 카드 모두 뒤집어서 처음으로 돌아가기
-  }, [level, isResetClicked]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달 // level이 바뀔 때마다
+  }, [level, reset]); //isResetClicked이 변경될 때마다(onClick시) 카드리스트에 RESET하기 위해 전달 // level이 바뀔 때마다
 
   /**
    * 클릭될 때마다 해당 카드의 정보를 받아오는 부분

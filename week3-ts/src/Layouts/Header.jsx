@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 // import { levelSelectState } from "../atom/store";
 import levelAtom from "../recoil/level/atom";
+import { answerAtom } from "../recoil/answer/atom";
+import { clickedReset } from "../recoil/answer/selectors";
+
 // import { answerState } from "../atom/store";
 /**
  * Header 컴포넌트 : 제목, 점수, 리셋버튼을 포함하는 컴포넌트
  * - props
- * 1) answer : App 컴포넌트 (상위)에서 받아온 정답 수
  * 2) isResetBtnClicked : 리셋 버튼이 눌러졌는지 유무를 App(상위)에 전달하기 위한 함수
  * 3) isResetClicked : 리셋 버튼이 눌러졌는지 유무를 main에도 전달하기 위한 App에서 관리하는 상태
  * - state
@@ -15,9 +17,8 @@ import levelAtom from "../recoil/level/atom";
  */
 function Header(props) {
   const level = useRecoilValue(levelAtom);
-  // const answer = useRecoilValue(answerState);
-  // console.log(answer);
-  const { handleResetBtn, isResetClicked } = props;
+  const answer = useRecoilValue(answerAtom);
+  const [reset, setReset] = useRecoilState(clickedReset);
   const [fade, setFade] = useState("");
 
   /**
@@ -31,20 +32,20 @@ function Header(props) {
       clearTimeout(a);
       setFade("");
     };
-  }, []); //[answer]
+  }, [answer]); //[answer]
 
   return (
     <StyledHeader>
       <TitleContainer>
         <h1>사모예드를 맞춰주세요</h1>
         <h2 className={"start " + fade}>
-          {/* {answer}/{level} */}/{level}
+          {answer}/{level}
         </h2>
       </TitleContainer>
       <BtnContainer
         type="button"
         onClick={() => {
-          handleResetBtn(!isResetClicked); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
+          setReset((prev) => !prev); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
         }}
       >
         RESET

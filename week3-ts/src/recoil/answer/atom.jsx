@@ -1,7 +1,12 @@
 //atom 선언
 import { atom } from "recoil";
-const answerState = atom({
-  key: "answerState",
-  defualt: 0,
+
+export const answerAtom = atom({
+  key: "answerAtom",
+  default: 0,
 });
-export default answerState;
+
+export const resetAtom = atom({
+  key: "resetAtom",
+  default: false,
+});
