@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { IMG } from "../assets/utils";
 import { randomImgChoice } from "../assets/utils";
 import { useRecoilValue, useRecoilState } from "recoil";
-// import { levelSelectState } from "../atom/store";
 import levelAtom from "../recoil/level/atom";
 import { totalAnswer } from "../recoil/answer/selectors";
 import { resetAtom } from "../recoil/answer/atom";

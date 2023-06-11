@@ -9,9 +9,6 @@ import { clickedReset } from "../recoil/answer/selectors";
 // import { answerState } from "../atom/store";
 /**
  * Header 컴포넌트 : 제목, 점수, 리셋버튼을 포함하는 컴포넌트
- * - props
- * 2) isResetBtnClicked : 리셋 버튼이 눌러졌는지 유무를 App(상위)에 전달하기 위한 함수
- * 3) isResetClicked : 리셋 버튼이 눌러졌는지 유무를 main에도 전달하기 위한 App에서 관리하는 상태
  * - state
  * 1) fade : answer(정답 수)가 업데이트 될때마다 글씨 빛번짐 효과를 주기 위한 상태
  */

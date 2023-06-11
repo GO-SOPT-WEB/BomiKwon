@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-// import { selectedLevelState } from "../selector/levelState";
 import selectedLevel from "../recoil/level/selectors";
 
 const Button = (props) => {
