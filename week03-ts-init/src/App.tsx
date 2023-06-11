@@ -2,6 +2,7 @@ import Header from "./Layouts/Header";
 import Main from "./Layouts/Main";
 import "./App.css";
 import ModalPortal from "./Components/ModalPortal";
+import Modal from "./Components/Modal";
 import { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "./assets/Styles/GlobalStyle";
@@ -33,13 +34,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         {isModalOpen && (
-          <ModalPortal
-            open={isModalOpen}
-            onClose={() => {
-              SetIsModalOpen(false);
-              setReset((prev: boolean) => !prev);
-            }}
-          />
+          <ModalPortal>
+            <Modal
+              onClose={() => {
+                SetIsModalOpen(false);
+                setReset((prev: boolean) => !prev);
+              }}
+            />
+          </ModalPortal>
         )}
         <Header />
         <Main />
