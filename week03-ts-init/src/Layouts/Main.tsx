@@ -5,7 +5,7 @@ import Button from "../Components/Button";
 /**
  * Main 컴포넌트 : CardList와 LvBtnList를 통해 카드와 레벨을 관리하는 부분
  */
-function Main(props) {
+function Main() {
   const levelText = ["EASY", "NORMAL", "HARD"];
   return (
     <StyledMain>

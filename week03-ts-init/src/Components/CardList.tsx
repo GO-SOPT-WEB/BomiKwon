@@ -17,7 +17,7 @@ import { resetAtom } from "../recoil/answer/atom";
  */
 const CardList = () => {
   const level: number = useRecoilValue(levelAtom);
-  const [answer, setAnswer] = useRecoilState(totalAnswer);
+  const [answer, setAnswer] = useRecoilState<boolean>(totalAnswer);
   const reset: boolean = useRecoilValue(resetAtom);
   const [cardUrlList, setcardUrlList] = useState<string[]>([]); // 카드에 넣을 이미지 url을 담은 배열
   const [flippedCardList, setFlippedCardList] = useState<string[]>([]); //뒤집어진 한 쌍의 카드 url을 담은 배열

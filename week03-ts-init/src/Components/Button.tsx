@@ -2,14 +2,15 @@ import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import selectedLevel from "../recoil/level/selectors";
+
 interface IButtonProps {
   text: string;
   width: number;
 }
 const Button = ({ text, width }: IButtonProps) => {
   const [select, setSelect] = useRecoilState(selectedLevel);
-  const [isClick, setIsClick] = useState(false);
-  const updateSelect = () => setSelect({ text });
+  const [isClick, setIsClick] = useState<boolean>(false);
+  const updateSelect: () => void = () => setSelect({ text });
 
   return (
     <StyledBtn type="button" isClick={isClick} onClick={updateSelect}>

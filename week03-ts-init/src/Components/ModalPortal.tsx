@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function Modal({ onClose }) {
   const handleClose = () => {
-    onClose?.();
+    onClose:?.();
   };
   return (
     <Overlay>

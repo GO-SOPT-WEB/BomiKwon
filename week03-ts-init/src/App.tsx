@@ -14,13 +14,12 @@ import { clickedReset } from "./recoil/answer/selectors";
  * App 컴포넌트 : Header와 Main을 포함하는 App 컴포넌트
  */
 function App() {
-  const answer = useRecoilValue(answerAtom);
-  const level = useRecoilValue(levelAtom);
-  const [reset, setReset] = useRecoilState(clickedReset);
-  const [isModalOpen, SetIsModalOpen] = useState(false);
+  const answer: number = useRecoilValue(answerAtom);
+  const level: number = useRecoilValue(levelAtom);
+  const [reset, setReset] = useRecoilState<boolean>(clickedReset);
+  const [isModalOpen, SetIsModalOpen] = useState<boolean>(false);
   const modalOpen = () => {
     SetIsModalOpen(true);
-    console.log(isModalOpen);
   };
 
   useEffect(() => {
@@ -38,7 +37,7 @@ function App() {
             open={isModalOpen}
             onClose={() => {
               SetIsModalOpen(false);
-              setReset((prev) => !prev);
+              setReset((prev: boolean) => !prev);
             }}
           />
         )}

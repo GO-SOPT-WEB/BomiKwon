@@ -10,16 +10,16 @@ import { clickedReset } from "../recoil/answer/selectors";
  * 1) fade : answer(정답 수)가 업데이트 될때마다 글씨 빛번짐 효과를 주기 위한 상태
  */
 function Header() {
-  const level = useRecoilValue(levelAtom);
-  const answer = useRecoilValue(answerAtom);
-  const [reset, setReset] = useRecoilState(clickedReset);
+  const level: number = useRecoilValue(levelAtom);
+  const answer: number = useRecoilValue(answerAtom);
+  const [reset, setReset] = useRecoilState<boolean>(clickedReset);
   const [fade, setFade] = useState("");
 
   /**
    * 카드 쌍을 맞춘 경우 현재 스코어가 빛나는 애니메이션
    */
   useEffect(() => {
-    let a = setTimeout(() => {
+    const a = setTimeout(() => {
       setFade("end");
     }, 500);
     return () => {
@@ -39,7 +39,7 @@ function Header() {
       <BtnContainer
         type="button"
         onClick={() => {
-          setReset((prev) => !prev); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
+          setReset((prev: boolean) => !prev); //클릭될 때마다 지금 클릭되었는지 유무를 계속 업데이트(반대로)하며 전달
         }}
       >
         RESET
