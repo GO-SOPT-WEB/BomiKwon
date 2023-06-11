@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import Header from "./Layouts/Header";
+import Main from "./Layouts/Main";
+import "./App.css";
+import ModalPortal from "./Components/ModalPortal";
+import { useEffect, useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import GlobalStyle from "./assets/Styles/GlobalStyle";
+import theme from "./assets/Styles/theme";
+import { useRecoilState, useRecoilValue } from "recoil";
+import levelAtom from "./recoil/level/atom";
+import { answerAtom } from "./recoil/answer/atom";
+import { clickedReset } from "./recoil/answer/selectors";
+/**
+ * App 컴포넌트 : Header와 Main을 포함하는 App 컴포넌트
+ */
 function App() {
-  const [count, setCount] = useState(0)
+  const answer = useRecoilValue(answerAtom);
+  const level = useRecoilValue(levelAtom);
+  const [reset, setReset] = useRecoilState(clickedReset);
+  const [isModalOpen, SetIsModalOpen] = useState(false);
+  const modalOpen = () => {
+    SetIsModalOpen(true);
+    console.log(isModalOpen);
+  };
+
+  useEffect(() => {
+    if (answer === level && level !== 0) {
+      modalOpen();
+    }
+  }, [answer]); //cardLength
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        {isModalOpen && (
+          <ModalPortal
+            open={isModalOpen}
+            onClose={() => {
+              SetIsModalOpen(false);
+              setReset((prev) => !prev);
+            }}
+          />
+        )}
+        <Header />
+        <Main />
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
