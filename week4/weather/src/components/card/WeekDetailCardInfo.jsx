@@ -1,8 +1,9 @@
 import React from "react";
 import DetailCardInfo from "./DetailCardInfo";
 import styled from "styled-components";
-import WeekDataHooks from "../hooks/weekDataHooks";
+import WeekDataHooks from "../../hooks/weekDataHooks";
 import { useParams } from "react-router-dom";
+import SkeletonCard from "../skeleton/SkeletonCard";
 /**
  * 주간 날씨 컴포넌트 : week/area 형태로 라우팅 시
  */
@@ -24,7 +25,9 @@ const WeekDetailCardInfo = () => {
             ))}
         </St.CardListWrapper>
       ) : (
-        <div>로딩 중입니다</div>
+        <St.CardListWrapper>
+          {cardListData.map(() => SkeletonCard)}
+        </St.CardListWrapper>
       )}
     </>
   );

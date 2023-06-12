@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { WEATER_TYPE } from "../constants/weather";
+import { WEATER_TYPE } from "../../constants/weather";
 
 const DetailCardInfo = (props) => {
   const { isDayOrWeek, cardData } = props;
@@ -22,7 +22,11 @@ const DetailCardInfo = (props) => {
           <h3>{cardData.name}</h3>
         </St.Header>
       )}
-      {weather_url && <St.Img src={weather_url.imgURL} alt={cardData.name} />}
+      {weather_url ? (
+        <St.Img src={weather_url.imgURL} alt={cardData.name} />
+      ) : (
+        <St.Imgdiv />
+      )}
       <St.Content>
         <div>
           <span>온도</span>
@@ -72,6 +76,12 @@ const St = {
     border-radius: 1rem;
 
     object-fit: contain;
+  `,
+  Imgdiv: styled.div`
+    width: 18rem;
+    height: 18rem;
+    border-radius: 1rem;
+    background-color: white;
   `,
   Header: styled.header`
     h3 {

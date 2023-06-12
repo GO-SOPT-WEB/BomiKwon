@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import DetailCardInfo from "./DetailCardInfo";
-import DayDataHooks from "../hooks/DayDataHooks";
+import DayDataHooks from "../../hooks/DayDataHooks";
 import { useParams } from "react-router-dom";
+import SkeletonCard from "../skeleton/SkeletonCard";
 /**
  * 오늘 날씨 컴포넌트 : day/area 형태로 라우팅 시
  */
@@ -19,7 +20,9 @@ const DayDetailCardInfo = () => {
           )}
         </St.CardListWrapper>
       ) : (
-        <div>로딩중입니다</div>
+        <St.CardListWrapper>
+          <SkeletonCard />
+        </St.CardListWrapper>
       )}
     </>
   );

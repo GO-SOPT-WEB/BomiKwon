@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WeekDetailCardInfo from "./components/WeekDetailCardInfo";
-import DayDetailCardInfo from "./components/DayDetailCardInfo";
+import WeekDetailCardInfo from "./components/card/WeekDetailCardInfo";
+import DayDetailCardInfo from "./components/card/DayDetailCardInfo";
 import DetailCard from "./pages/DetailCard";
 import ErrorInfo from "./components/ErrorInfo";
 
