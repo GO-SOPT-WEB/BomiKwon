@@ -4,19 +4,36 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailCardInfo from "./DetailCardInfo";
 import styled from "styled-components";
+import axios from "axios";
 /**
  * 오늘 날씨 컴포넌트 : day/area 형태로 라우팅 시
  */
 const DayDetailCardInfo = () => {
-  const [cardData, setCardData] = useState();
+  const [cardData, setCardData] = useState({
+    name: "",
+    weather: [
+      {
+        description: "",
+      },
+    ],
+    main: {
+      temp: 0,
+      feels_like: 0,
+      temp_min: 0,
+      temp_max: 0,
+    },
+    clouds: {
+      all: 0,
+    },
+    dt_txt: 0,
+  });
   const now = new Date(); // 현재 날짜 및 시간
   const month = now.getMonth();
   const date = now.getDate();
   const { area } = useParams();
-  console.log(area);
 
-  const getOneDetailCardInfo = (area) => {
-    fetch(
+  const getOneDetailCardInfo = async (area) => {
+    await axios(
       `https://api.openweathermap.org/data/2.5/weather?q=${area}&appid=${
         import.meta.env.VITE_APP_WEATHER
       }&units=metric`
@@ -46,23 +63,27 @@ const DayDetailCardInfo = () => {
         }
       })
       .catch((err) => console.log(err));
+    //finally
   };
 
   useEffect(() => {
     getOneDetailCardInfo(area);
   }, [area]);
 
-  if (cardData) {
-    return (
-      <St.CardListWrapper>
-        {cardData && <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />}
-      </St.CardListWrapper>
-    );
-  } else {
-    return <div>에러입니다</div>;
-  }
+  return (
+    <>
+      {cardData ? (
+        <St.CardListWrapper>
+          {cardData && (
+            <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />
+          )}
+        </St.CardListWrapper>
+      ) : (
+        <div>로딩중입니다</div>
+      )}
+    </>
+  );
 };
-
 export default DayDetailCardInfo;
 const St = {
   CardListWrapper: styled.section`

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WeekDetailCardInfo from "./components/WeekDetailCardInfo";
 import DayDetailCardInfo from "./components/DayDetailCardInfo";
 import DetailCard from "./pages/DetailCard";
+import ErrorInfo from "./components/ErrorInfo";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/day" element={<DetailCard />}>
           <Route path=":area" element={<DayDetailCardInfo />} />
         </Route>
+        <Route path="/*" element={<ErrorInfo />} />
       </Routes>
     </BrowserRouter>
   );
