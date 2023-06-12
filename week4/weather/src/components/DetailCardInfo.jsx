@@ -5,6 +5,7 @@ import { WEATER_TYPE } from "../constants/weather";
 
 const DetailCardInfo = (props) => {
   const { isDayOrWeek, cardData } = props;
+  console.log(cardData);
   // 카드 description과 같은 데이터를 WEATER_TYPE에서 찾아 이미지 url 얻기
   let weather_url = WEATER_TYPE.find(
     (item) => item.description === cardData.weather[0].description
@@ -78,7 +79,7 @@ const St = {
       color: ${({ theme }) => theme.colors.Sopt_Black};
     }
   `,
-  Content: styled.p`
+  Content: styled.div`
     width: 100%;
     padding: 2rem;
 
