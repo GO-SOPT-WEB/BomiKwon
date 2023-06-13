@@ -23,8 +23,8 @@ const St = {
   Shimmer: styled.div`
     width: 50%;
     height: 100%;
-    background-color: #e0e0e0;
-    box-shadow: 0 0 30px 30px #e0e0e0;
+    background-color: ${({ theme }) => theme.colors.Sopt_Light_Yellow};
+    box-shadow: 0 0 30px 30px ${({ theme }) => theme.colors.Sopt_Light_Yellow};
     animation: loading 2s infinite;
     @keyframes loading {
       0% {
