@@ -4,12 +4,16 @@ import { useEffect, useState } from "react";
 const DayDataHooks = (props) => {
   const { area } = props;
   const [cardData, setCardData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const now = new Date(); // 현재 날짜 및 시간
   const month = now.getMonth();
   const date = now.getDate();
 
   const getOneData = async () => {
     try {
+      setIsLoading(true);
+      setIsError(false);
       const res = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${area}&appid=${
           import.meta.env.VITE_APP_WEATHER
@@ -37,6 +41,9 @@ const DayDataHooks = (props) => {
       setCardData(detailData);
     } catch (error) {
       console.log("getOneData Err", error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -44,7 +51,7 @@ const DayDataHooks = (props) => {
     getOneData();
   }, [area]);
 
-  return { cardData };
+  return { cardData, isError, isLoading };
 };
 
 export default DayDataHooks;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DetailCardInfo from "./DetailCardInfo";
+import ErrorInfo from "../ErrorInfo";
 import DayDataHooks from "../../hooks/DayDataHooks";
 import { useParams } from "react-router-dom";
 import SkeletonCard from "../skeleton/SkeletonCard";
@@ -9,22 +10,18 @@ import SkeletonCard from "../skeleton/SkeletonCard";
  */
 const DayDetailCardInfo = () => {
   const area = useParams();
-  const { cardData } = DayDataHooks(area);
-  console.log(cardData);
+  const { cardData, isLoading, isError } = DayDataHooks(area);
+
   return (
-    <>
-      {cardData ? (
-        <St.CardListWrapper>
-          {cardData && (
-            <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />
-          )}
-        </St.CardListWrapper>
+    <St.CardListWrapper>
+      {isLoading ? (
+        <SkeletonCard />
+      ) : isError ? (
+        <ErrorInfo />
       ) : (
-        <St.CardListWrapper>
-          <SkeletonCard />
-        </St.CardListWrapper>
+        cardData && <DetailCardInfo isDayOrWeek={"day"} cardData={cardData} />
       )}
-    </>
+    </St.CardListWrapper>
   );
 };
 export default DayDetailCardInfo;

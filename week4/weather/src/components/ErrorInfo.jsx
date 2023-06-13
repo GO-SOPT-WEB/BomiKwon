@@ -1,7 +1,7 @@
 import React from "react";
 
 function ErrorInfo() {
-  return <div>잘못된 경로입니다!</div>;
+  return <>잘못된 경로입니다!</>;
 }
 
 export default ErrorInfo;

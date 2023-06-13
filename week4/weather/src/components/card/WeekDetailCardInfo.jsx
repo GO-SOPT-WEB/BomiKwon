@@ -1,5 +1,6 @@
 import React from "react";
 import DetailCardInfo from "./DetailCardInfo";
+import ErrorInfo from "../ErrorInfo";
 import styled from "styled-components";
 import WeekDataHooks from "../../hooks/weekDataHooks";
 import { useParams } from "react-router-dom";
@@ -9,27 +10,31 @@ import SkeletonCard from "../skeleton/SkeletonCard";
  */
 const WeekDetailCardInfo = () => {
   const area = useParams();
-  const { cardListData } = WeekDataHooks(area);
+  const { cardListData, isLoading, isError } = WeekDataHooks(area);
 
   return (
-    <>
-      {cardListData ? (
-        <St.CardListWrapper>
-          {cardListData &&
-            cardListData.map((item) => (
-              <DetailCardInfo
-                isDayOrWeek={"week"}
-                cardData={item}
-                key={cardListData.indexOf(item)}
-              />
-            ))}
-        </St.CardListWrapper>
+    <St.CardListWrapper>
+      {isLoading ? (
+        <>
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </>
+      ) : isError ? (
+        <ErrorInfo />
       ) : (
-        <St.CardListWrapper>
-          {cardListData.map(() => SkeletonCard)}
-        </St.CardListWrapper>
+        cardListData &&
+        cardListData.map((item) => (
+          <DetailCardInfo
+            isDayOrWeek={"week"}
+            cardData={item}
+            key={cardListData.indexOf(item)}
+          />
+        ))
       )}
-    </>
+    </St.CardListWrapper>
   );
 };
 

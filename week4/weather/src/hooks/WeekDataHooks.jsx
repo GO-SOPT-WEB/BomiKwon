@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 const WeekDataHooks = (props) => {
   const { area } = props;
   const [cardListData, setCardListData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const getFiveData = async () => {
     try {
+      setIsLoading(true);
+      setIsError(false);
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/forecast?q=${area}&appid=${
           import.meta.env.VITE_APP_WEATHER
@@ -40,6 +44,9 @@ const WeekDataHooks = (props) => {
       setCardListData(detailData);
     } catch (error) {
       console.log("getFiveData Err", error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,6 +54,6 @@ const WeekDataHooks = (props) => {
     getFiveData();
   }, [area]);
 
-  return { cardListData };
+  return { cardListData, isError, isLoading };
 };
 export default WeekDataHooks;
