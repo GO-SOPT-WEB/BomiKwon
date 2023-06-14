@@ -197,6 +197,18 @@ a {
     gap: 1.75rem;
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
 .card {
     background-color: #95d1c2;
     /* height:300px;
@@ -206,6 +218,7 @@ a {
     box-shadow: 0 4px 5px #809068;
     border-radius: 3px;
     transition: all .1s ease-in;
+    animation: fadeInUp 1s;
     display: none;
 }
 

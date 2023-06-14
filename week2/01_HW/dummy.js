@@ -79,6 +79,7 @@ export const menuInfo = [
  * 메뉴 추가 시 localStorage에서 받아오는 부분
  */
 const addedMenu = localStorage.getItem("menu");
+
 if (addedMenu !== null) {
   const parsedMenus = JSON.parse(addedMenu);
   const addedMenuInfo = {
@@ -87,6 +88,6 @@ if (addedMenu !== null) {
     menuImgUrl: "./images/pubao.jpeg",
     category: parsedMenus[0].menuCtgr,
   };
-  // console.log(addedMenuInfo);
+  // // console.log(addedMenuInfo);
   menuInfo.push(addedMenuInfo);
 }
