@@ -53,7 +53,7 @@ const handleMenuCtgrCanceled = (e) => {
 /**
  * 메뉴 카테고리 띄우는 부분 + 카드생성/삭제 함수 호출
  */
-const navTarget = document.querySelector("nav");
+const navTarget = document.getElementById("navContainer");
 menuCategoryId.map((id, key) => {
   const navAtag = document.createElement("a");
   navAtag.setAttribute("href", "#" + id);

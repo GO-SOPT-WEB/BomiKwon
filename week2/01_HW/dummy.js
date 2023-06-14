@@ -74,3 +74,19 @@ export const menuInfo = [
     category: "술",
   },
 ];
+
+/**
+ * 메뉴 추가 시 localStorage에서 받아오는 부분
+ */
+const addedMenu = localStorage.getItem("menu");
+if (addedMenu !== null) {
+  const parsedMenus = JSON.parse(addedMenu);
+  const addedMenuInfo = {
+    menuName: parsedMenus[0].menuName,
+    menuTag: parsedMenus[0].menuTag.split(","),
+    menuImgUrl: "./images/pubao.jpeg",
+    category: parsedMenus[0].menuCtgr,
+  };
+  // console.log(addedMenuInfo);
+  menuInfo.push(addedMenuInfo);
+}

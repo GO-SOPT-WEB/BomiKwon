@@ -27,34 +27,34 @@ inputImage.addEventListener("change", (e) => {
  */
 const addedCard = [{ menuName: "", menuTag: "", menuCtgr: "" }];
 //메뉴 이름
-const menuName = document.getElementById("inputName");
+const menuNameEl = document.getElementById("inputName");
 const getMenuName = (e) => {
-  addedCard.menuName = e.target.value;
+  addedCard[0].menuName = e.target.value;
 };
-menuName.addEventListener("change", (e) => {
+menuNameEl.addEventListener("change", (e) => {
   getMenuName(e);
 });
 //메뉴 태그
-const menuTag = document.getElementById("inputTag");
+const menuTagEl = document.getElementById("inputTag");
 const getMenuTag = (e) => {
-  addedCard.menuTagmenuTag = e.target.value;
+  addedCard[0].menuTag = e.target.value;
 };
-menuTag.addEventListener("change", (e) => {
+menuTagEl.addEventListener("change", (e) => {
   getMenuTag(e);
 });
 //메뉴 카테고리
-const menuCtgr = document.getElementsByTagName("select");
-const getMenuCtgr = (e) => {
-  addedCard.menuCtgrmenuCtgr = e.target.value;
-};
-menuCtgr.addEventListener("change", (e) => {
-  getMenuCtgr(e);
-});
+const menuCtgrEl = document.getElementById("selectedCtgr");
+menuCtgrEl.addEventListener(
+  "change",
+  function () {
+    addedCard[0].menuCtgr = this.value;
+  },
+  false
+);
+
 //받아온 정보 로컬에 저장
 const saveMenu = () => {
   localStorage.setItem("menu", JSON.stringify(addedCard));
 };
-const button = document.getElementById("addBtn");
-button.addEventListener("click", (e) => {
-  saveMenu();
-});
+const button = document.getElementById(" addBtn");
+button.addEventListener("click", () => saveMenu());
