@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import { WEATER_TYPE } from "../constants/weather";
+import { WEATER_TYPE } from "../../constants/weather";
 
 const DetailCardInfo = (props) => {
   const { isDayOrWeek, cardData } = props;
+  console.log(cardData);
   // 카드 description과 같은 데이터를 WEATER_TYPE에서 찾아 이미지 url 얻기
   let weather_url = WEATER_TYPE.find(
     (item) => item.description === cardData.weather[0].description
@@ -21,7 +22,11 @@ const DetailCardInfo = (props) => {
           <h3>{cardData.name}</h3>
         </St.Header>
       )}
-      {weather_url && <St.Img src={weather_url.imgURL} alt={cardData.name} />}
+      {weather_url ? (
+        <St.Img src={weather_url.imgURL} alt={cardData.name} />
+      ) : (
+        <St.Imgdiv />
+      )}
       <St.Content>
         <div>
           <span>온도</span>
@@ -72,13 +77,19 @@ const St = {
 
     object-fit: contain;
   `,
+  Imgdiv: styled.div`
+    width: 18rem;
+    height: 18rem;
+    border-radius: 1rem;
+    background-color: white;
+  `,
   Header: styled.header`
     h3 {
       ${({ theme }) => theme.fonts.M_Title_1};
       color: ${({ theme }) => theme.colors.Sopt_Black};
     }
   `,
-  Content: styled.p`
+  Content: styled.div`
     width: 100%;
     padding: 2rem;
 

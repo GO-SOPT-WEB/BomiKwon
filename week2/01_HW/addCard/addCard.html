@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bomipocha Menu</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="addCard.css">
+    <script async type="module" src="addCard.js"></script>
+    </link>
+</head>
+<!-- 1. 모든 정보가 입력되면 localStorage에 추가후 main페이지로 이동
+2. 메인페이지에서 추가된 상품 조회가능 -->
+
+<body>
+    <div id="nav-cards-wrap">
+        <section id="addCardWrapper">
+            <h1>보미 포차의 메뉴를 추가해주세요</h1>
+            <div id="addCardContainer">
+                <div class="addInfoSection">
+                    <label for="inputName">메뉴 이름</label>
+                    <input type="text" id="inputName">
+                </div>
+                <div class="addInfoSection">
+                    <label for="inputTag">해시태그 (,로 구분)</label>
+                    <input type="text" id="inputTag">
+                </div>
+                <div class="addInfoSection">
+                    <label for="inputPhoto">메뉴 사진</label>
+                    <input type="file" id="inputPhoto">
+                </div>
+                <img src="" alt="선택된 사진" id="selectedPhoto">
+                <select name='ctgr' id="selectedCtgr" ">
+                    <option value='' selected>-- 카테고리선택 --</option>
+                    <option value="안주">안주</option>
+                    <option value="탕">탕</option>
+                    <option value="사이드">사이드</option>
+                    <option value="술">술</option>
+                </select>
+                <button id=" addBtn">
+                    <a href="../index.html">추가 완료</a>
+                    </button>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+
+</html>

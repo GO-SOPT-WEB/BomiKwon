@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "establishRetrosansOTF";
+}
+
+/* -----------------nav와 카드content를 포함하는 main--------------------- */
+#nav-cards-wrap {
+    top: 100px;
+    height: 1000px;
+    width: 100vw;
+    padding-top: 130px;
+    margin: 0 auto;
+    background-color: #9eb9af;
+    display: flex;
+    flex-direction: row;
+}
+
+/* ----------------addCard-------------------- */
+#addCardWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 50rem;
+    height: 100%;
+    margin: 0 auto;
+
+    background-color: #c5663d;
+    color: #e0dabe;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+}
+
+#addCardWrapper>h1 {
+    margin-bottom: 2rem;
+}
+
+#addCardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 35rem;
+    height: 70%;
+    padding: 1.5rem;
+
+    background-color: #e0dabe;
+    color: #13210d;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+}
+
+.addInfoSection {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.addInfoSection>label {
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+#addCardContainer select {
+    font-size: 1rem;
+}
+
+#addCardContainer>img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: fill;
+}
+
+#addCardContainer>button {
+    width: 10rem;
+    height: 2rem;
+    background-color: #12714f;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: none;
+}
+
+#addCardContainer>button>a {
+    text-decoration: none;
+    color: #e0dabe;
+}
