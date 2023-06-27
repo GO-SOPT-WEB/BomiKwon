@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
 
-const PageLayout = (props) => {
-  const { children } = props;
+const PageLayout = ({ children }) => {
   return (
     <St.PageWrapper>
       <Header />
